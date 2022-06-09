@@ -1,29 +1,61 @@
 :root {
-  --tempBorder: solid black;
+    --tempBorder: solid black;
 }
 
 body {
-  height: 100vh;
-  width: 100vw;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
 }
 
 #header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border: var(--tempBorder);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: var(--tempBorder);
 }
 
 #title {
-  display: flex;
-  gap: 12px;
-  padding-left: 16px;
+    display: flex;
+    gap: 12px;
+    padding-left: 16px;
 }
 
 form p {
-display: flex;
+    display: flex;
 }
 
 #unitBtns {
-  padding-right: 16px;
+    padding-right: 16px;
+}
+
+#dayForecast {
+    margin-top: 24px;
+    width: max-content;
+    justify-self: center;
+    align-self: center;
+    display: grid;
+    border: var(--tempBorder);
+}
+
+#cityDate {
+    grid-column: 1 / span 4;
+    width: 100%;
+    border: var(--tempBorder);
+    text-align: center;
+}
+
+#dayMain {
+    grid-column: 1 / span 2;
+}
+
+#dayDetails {
+    display: grid;
+    grid-template: repeat(3, 1fr) / repeat(3, 1fr);
+    border: var(--tempBorder);
+}
+
+#dayDetails div {
+    border: var(--tempBorder);
 }

@@ -17,7 +17,7 @@ export const getData = async (location = 'Amsterdam', unit = 'metric') => {
     const forecast = await response2.json();
     return { city, countryCode, forecast };
   } catch (err) {
-    console.error(err);
+    console.error('City Not Found');
   }
 };
 

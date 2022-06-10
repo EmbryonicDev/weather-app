@@ -1,4 +1,5 @@
 import { format, fromUnixTime } from 'date-fns';
+import { changeTimeZone } from './functions';
 import { getData } from './main-async';
 
 export const loadPage = {
@@ -43,14 +44,13 @@ export const loadPage = {
     loadPage.cityName.innerText += `, ${loadPage.data.countryCode}`;
   },
   getDate() {
-    const date = new Date();
+    let date = new Date();
+    date = changeTimeZone(date, this.data.forecast.timezone);
     const formattedDate = format(date, 'eeee, d MMMM yyyy | H:mm');
     loadPage.date.innerText = formattedDate;
   },
   getWind() {
     if (loadPage.data.unit === 'metric') {
-      console.log(loadPage.data.unit);
-      console.log("yes, you are here!")
       loadPage.wind.innerText = `${Math.round((loadPage.data.forecast.current.wind_speed) * 3.6)} km/h`;
     } else if (loadPage.data.unit === 'imperial') {
       loadPage.wind.innerText = `${Math.round(loadPage.data.forecast.current.wind_speed)} mi/h`;
@@ -73,12 +73,14 @@ export const loadPage = {
     loadPage.rainChance.innerText = `${rainPercentage * 100}%`;
   },
   getSunrise() {
-    const date = fromUnixTime(loadPage.data.forecast.current.sunrise);
+    let date = fromUnixTime(loadPage.data.forecast.current.sunrise);
+    date = changeTimeZone(date, this.data.forecast.timezone);
     const extractedTime = format(date, 'H:mm');
     loadPage.sunrise.innerText = extractedTime;
   },
   getSunset() {
-    const date = fromUnixTime(loadPage.data.forecast.current.sunset);
+    let date = fromUnixTime(loadPage.data.forecast.current.sunset);
+    date = changeTimeZone(date, this.data.forecast.timezone);
     const extractedTime = format(date, 'H:mm');
     loadPage.sunset.innerText = extractedTime;
   },

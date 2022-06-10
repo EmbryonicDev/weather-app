@@ -18,6 +18,8 @@ export const loadPage = {
     loadPage.getVisibility();
     loadPage.getClouds();
     loadPage.getChanceOfRain();
+    loadPage.getSunrise();
+    loadPage.getSunset();
   },
   cacheDom() {
     loadPage.input = document.querySelector('input');
@@ -29,6 +31,8 @@ export const loadPage = {
     loadPage.visibility = document.querySelector('#visibility .dayData');
     loadPage.clouds = document.querySelector('#clouds .dayData');
     loadPage.rainChance = document.querySelector('#rainChance .dayData');
+    loadPage.sunrise = document.querySelector('#sunrise .dayData');
+    loadPage.sunset = document.querySelector('#sunset .dayData');
   },
   getCity() {
     loadPage.cityName.innerText = loadPage.data.city;
@@ -59,6 +63,16 @@ export const loadPage = {
   getChanceOfRain() {
     const rainPercentage = loadPage.data.forecast.daily[0].pop;
     loadPage.rainChance.innerText = `${rainPercentage * 100}%`;
+  },
+  getSunrise() {
+    const date = fromUnixTime(loadPage.data.forecast.current.sunrise);
+    const extractedTime = format(date, 'H:mm');
+    loadPage.sunrise.innerText = extractedTime;
+  },
+  getSunset() {
+    const date = fromUnixTime(loadPage.data.forecast.current.sunset);
+    const extractedTime = format(date, 'H:mm');
+    loadPage.sunset.innerText = extractedTime;
   },
 };
 

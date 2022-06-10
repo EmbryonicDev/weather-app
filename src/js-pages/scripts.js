@@ -8,6 +8,7 @@ export const loadPage = {
 
     loadPage.cacheDom();
     loadPage.getCity();
+    loadPage.getCountry();
   },
   cacheDom() {
     loadPage.input = document.querySelector('input');
@@ -16,6 +17,9 @@ export const loadPage = {
   },
   getCity() {
     loadPage.cityName.innerText = loadPage.data.city;
+  },
+  getCountry() {
+    loadPage.cityName.innerText += `, ${loadPage.data.countryCode}`;
   },
 };
 

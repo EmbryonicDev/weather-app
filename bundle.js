@@ -8656,32 +8656,36 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
 
-var loadPage = /*#__PURE__*/function () {
-  var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(city, unit) {
-    var forecast;
-    return _regeneratorRuntime().wrap(function _callee$(_context) {
-      while (1) {
-        switch (_context.prev = _context.next) {
-          case 0:
-            _context.next = 2;
-            return (0,_main_async__WEBPACK_IMPORTED_MODULE_0__.getForecast)(city, unit);
+var loadPage = {
+  data: null,
+  init: function () {
+    var _init = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(city, unit) {
+      return _regeneratorRuntime().wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              _context.next = 2;
+              return (0,_main_async__WEBPACK_IMPORTED_MODULE_0__.getData)(city, unit);
 
-          case 2:
-            forecast = _context.sent;
-            console.log(forecast);
+            case 2:
+              loadPage.data = _context.sent;
+              console.log(loadPage.data);
 
-          case 4:
-          case "end":
-            return _context.stop();
+            case 4:
+            case "end":
+              return _context.stop();
+          }
         }
-      }
-    }, _callee);
-  }));
+      }, _callee);
+    }));
 
-  return function loadPage(_x, _x2) {
-    return _ref.apply(this, arguments);
-  };
-}();
+    function init(_x, _x2) {
+      return _init.apply(this, arguments);
+    }
+
+    return init;
+  }()
+};
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   loadPage: loadPage
 });
@@ -8694,7 +8698,7 @@ var loadPage = /*#__PURE__*/function () {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__),
-/* harmony export */   "getForecast": () => (/* binding */ getForecast)
+/* harmony export */   "getData": () => (/* binding */ getData)
 /* harmony export */ });
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 
@@ -8705,7 +8709,7 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
 // eslint-disable-next-line consistent-return
-var getForecast = /*#__PURE__*/function () {
+var getData = /*#__PURE__*/function () {
   var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
     var location,
         unit,
@@ -8768,7 +8772,7 @@ var getForecast = /*#__PURE__*/function () {
           case 25:
             _context.prev = 25;
             _context.t0 = _context["catch"](4);
-            console.error(_context.t0);
+            console.error('City Not Found');
 
           case 28:
           case "end":
@@ -8778,12 +8782,12 @@ var getForecast = /*#__PURE__*/function () {
     }, _callee, null, [[4, 25]]);
   }));
 
-  return function getForecast() {
+  return function getData() {
     return _ref.apply(this, arguments);
   };
 }();
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  getForecast: getForecast
+  getData: getData
 });
 
 /***/ }),
@@ -9445,7 +9449,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-(0,_js_pages_scripts__WEBPACK_IMPORTED_MODULE_0__.loadPage)();
+_js_pages_scripts__WEBPACK_IMPORTED_MODULE_0__.loadPage.init();
 })();
 
 /******/ })()

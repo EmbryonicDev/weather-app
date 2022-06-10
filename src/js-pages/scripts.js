@@ -1,3 +1,4 @@
+import { format } from 'date-fns';
 import { getData } from './main-async';
 
 export const loadPage = {

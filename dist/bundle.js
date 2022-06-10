@@ -8728,13 +8728,13 @@ var loadPage = {
     loadPage.date.innerText = formattedDate;
   },
   getWind: function getWind() {
-    loadPage.wind.innerText = loadPage.data.forecast.current.wind_speed;
+    loadPage.wind.innerText = Math.round(loadPage.data.forecast.current.wind_speed);
   },
   getHumidity: function getHumidity() {
     loadPage.humidity.innerText = "".concat(loadPage.data.forecast.current.humidity, "%");
   },
   getUvIndex: function getUvIndex() {
-    loadPage.uvIndex.innerText = "".concat(loadPage.data.forecast.current.uvi);
+    loadPage.uvIndex.innerText = "".concat(Math.round(loadPage.data.forecast.current.uvi));
   },
   getVisibility: function getVisibility() {
     loadPage.visibility.innerText = "".concat(loadPage.data.forecast.current.visibility);

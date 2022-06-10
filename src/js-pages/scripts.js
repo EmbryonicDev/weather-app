@@ -48,13 +48,13 @@ export const loadPage = {
     loadPage.date.innerText = formattedDate;
   },
   getWind() {
-    loadPage.wind.innerText = loadPage.data.forecast.current.wind_speed;
+    loadPage.wind.innerText = Math.round(loadPage.data.forecast.current.wind_speed);
   },
   getHumidity() {
     loadPage.humidity.innerText = `${loadPage.data.forecast.current.humidity}%`;
   },
   getUvIndex() {
-    loadPage.uvIndex.innerText = `${loadPage.data.forecast.current.uvi}`;
+    loadPage.uvIndex.innerText = `${Math.round(loadPage.data.forecast.current.uvi)}`;
   },
   getVisibility() {
     loadPage.visibility.innerText = `${loadPage.data.forecast.current.visibility}`;

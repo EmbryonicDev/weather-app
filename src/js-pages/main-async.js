@@ -15,7 +15,9 @@ export const getData = async (location = 'Amsterdam', unit = 'metric') => {
 
     const response2 = await fetch(url2, { mode: 'cors' });
     const forecast = await response2.json();
-    return { city, countryCode, forecast };
+    return {
+      city, countryCode, unit, forecast,
+    };
   } catch (err) {
     console.error('City Not Found');
   }

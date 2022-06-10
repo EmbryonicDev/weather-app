@@ -20,6 +20,7 @@ export const loadPage = {
     loadPage.getChanceOfRain();
     loadPage.getSunrise();
     loadPage.getSunset();
+    loadPage.getPressure();
   },
   cacheDom() {
     loadPage.input = document.querySelector('input');
@@ -33,6 +34,7 @@ export const loadPage = {
     loadPage.rainChance = document.querySelector('#rainChance .dayData');
     loadPage.sunrise = document.querySelector('#sunrise .dayData');
     loadPage.sunset = document.querySelector('#sunset .dayData');
+    loadPage.pressure = document.querySelector('#pressure .dayData');
   },
   getCity() {
     loadPage.cityName.innerText = loadPage.data.city;
@@ -73,6 +75,9 @@ export const loadPage = {
     const date = fromUnixTime(loadPage.data.forecast.current.sunset);
     const extractedTime = format(date, 'H:mm');
     loadPage.sunset.innerText = extractedTime;
+  },
+  getPressure() {
+    loadPage.pressure.innerText = `${loadPage.data.forecast.current.pressure} hPa`;
   },
 };
 

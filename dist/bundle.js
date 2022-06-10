@@ -8647,6 +8647,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "loadPage": () => (/* binding */ loadPage)
 /* harmony export */ });
 /* harmony import */ var date_fns__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(326);
+/* harmony import */ var date_fns__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(322);
 /* harmony import */ var _main_async__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(309);
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 
@@ -8683,8 +8684,11 @@ var loadPage = {
               loadPage.getVisibility();
               loadPage.getClouds();
               loadPage.getChanceOfRain();
+              loadPage.getSunrise();
+              loadPage.getSunset();
+              loadPage.getPressure();
 
-            case 15:
+            case 18:
             case "end":
               return _context.stop();
           }
@@ -8708,6 +8712,9 @@ var loadPage = {
     loadPage.visibility = document.querySelector('#visibility .dayData');
     loadPage.clouds = document.querySelector('#clouds .dayData');
     loadPage.rainChance = document.querySelector('#rainChance .dayData');
+    loadPage.sunrise = document.querySelector('#sunrise .dayData');
+    loadPage.sunset = document.querySelector('#sunset .dayData');
+    loadPage.pressure = document.querySelector('#pressure .dayData');
   },
   getCity: function getCity() {
     loadPage.cityName.innerText = loadPage.data.city;
@@ -8738,6 +8745,19 @@ var loadPage = {
   getChanceOfRain: function getChanceOfRain() {
     var rainPercentage = loadPage.data.forecast.daily[0].pop;
     loadPage.rainChance.innerText = "".concat(rainPercentage * 100, "%");
+  },
+  getSunrise: function getSunrise() {
+    var date = (0,date_fns__WEBPACK_IMPORTED_MODULE_2__["default"])(loadPage.data.forecast.current.sunrise);
+    var extractedTime = (0,date_fns__WEBPACK_IMPORTED_MODULE_1__["default"])(date, 'H:mm');
+    loadPage.sunrise.innerText = extractedTime;
+  },
+  getSunset: function getSunset() {
+    var date = (0,date_fns__WEBPACK_IMPORTED_MODULE_2__["default"])(loadPage.data.forecast.current.sunset);
+    var extractedTime = (0,date_fns__WEBPACK_IMPORTED_MODULE_1__["default"])(date, 'H:mm');
+    loadPage.sunset.innerText = extractedTime;
+  },
+  getPressure: function getPressure() {
+    loadPage.pressure.innerText = "".concat(loadPage.data.forecast.current.pressure, " hPa");
   }
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -9401,7 +9421,49 @@ ___CSS_LOADER_EXPORT___.push([module.id, ":root {\n    --tempBorder: solid black
 
 
 /***/ }),
-/* 322 */,
+/* 322 */
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ fromUnixTime)
+/* harmony export */ });
+/* harmony import */ var _toDate_index_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(325);
+/* harmony import */ var _lib_toInteger_index_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(324);
+/* harmony import */ var _lib_requiredArgs_index_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(323);
+
+
+
+/**
+ * @name fromUnixTime
+ * @category Timestamp Helpers
+ * @summary Create a date from a Unix timestamp.
+ *
+ * @description
+ * Create a date from a Unix timestamp (in seconds). Decimal values will be discarded.
+ *
+ * ### v2.0.0 breaking changes:
+ *
+ * - [Changes that are common for the whole library](https://github.com/date-fns/date-fns/blob/master/docs/upgradeGuide.md#Common-Changes).
+ *
+ * @param {Number} unixTime - the given Unix timestamp (in seconds)
+ * @returns {Date} the date
+ * @throws {TypeError} 1 argument required
+ *
+ * @example
+ * // Create the date 29 February 2012 11:45:05:
+ * const result = fromUnixTime(1330515905)
+ * //=> Wed Feb 29 2012 11:45:05
+ */
+
+function fromUnixTime(dirtyUnixTime) {
+  (0,_lib_requiredArgs_index_js__WEBPACK_IMPORTED_MODULE_0__["default"])(1, arguments);
+  var unixTime = (0,_lib_toInteger_index_js__WEBPACK_IMPORTED_MODULE_1__["default"])(dirtyUnixTime);
+  return (0,_toDate_index_js__WEBPACK_IMPORTED_MODULE_2__["default"])(unixTime * 1000);
+}
+
+/***/ }),
 /* 323 */
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 

@@ -1,8 +1,8 @@
-
 // eslint-disable-next-line consistent-return
-export const getForecast = async (location = 'Amsterdam', unit = 'metric') => {
+export const getData = async (location = 'Amsterdam', unit = 'metric') => {
   const apiKey = '8d8571b1c93bd4e2325c718b62e874dc';
   const url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${apiKey}&units=${unit}`;
+
   try {
     const response = await fetch(url, { mode: 'cors' });
     const locationData = await response.json();
@@ -21,4 +21,4 @@ export const getForecast = async (location = 'Amsterdam', unit = 'metric') => {
   }
 };
 
-export default { getForecast };
+export default { getData };

@@ -3,4 +3,4 @@ import { loadPage } from './js-pages/scripts';
 import './styles/modern-normalize.css';
 import './styles/style.css';
 
-loadPage();
+loadPage.init();

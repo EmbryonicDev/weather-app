@@ -10,6 +10,7 @@ export const loadPage = {
     loadPage.cacheDom();
     loadPage.getCity();
     loadPage.getCountry();
+    loadPage.getDate();
   },
   cacheDom() {
     loadPage.input = document.querySelector('input');
@@ -21,6 +22,11 @@ export const loadPage = {
   },
   getCountry() {
     loadPage.cityName.innerText += `, ${loadPage.data.countryCode}`;
+  },
+  getDate() {
+    const date = new Date();
+    const formattedDate = format(date, 'eeee, d MMMM yyyy | H:mm');
+    loadPage.date.innerText = formattedDate;
   },
 };
 

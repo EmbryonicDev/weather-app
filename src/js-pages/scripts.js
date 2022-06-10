@@ -16,6 +16,8 @@ export const loadPage = {
     loadPage.getHumidity();
     loadPage.getUvIndex();
     loadPage.getVisibility();
+    loadPage.getClouds();
+    loadPage.getChanceOfRain();
   },
   cacheDom() {
     loadPage.input = document.querySelector('input');
@@ -25,6 +27,8 @@ export const loadPage = {
     loadPage.humidity = document.querySelector('#humidity .dayData');
     loadPage.uvIndex = document.querySelector('#uv .dayData');
     loadPage.visibility = document.querySelector('#visibility .dayData');
+    loadPage.clouds = document.querySelector('#clouds .dayData');
+    loadPage.rainChance = document.querySelector('#rainChance .dayData');
   },
   getCity() {
     loadPage.cityName.innerText = loadPage.data.city;
@@ -48,6 +52,13 @@ export const loadPage = {
   },
   getVisibility() {
     loadPage.visibility.innerText = `${loadPage.data.forecast.current.visibility}`;
+  },
+  getClouds() {
+    loadPage.clouds.innerText = `${loadPage.data.forecast.current.clouds}%`;
+  },
+  getChanceOfRain() {
+    const rainPercentage = loadPage.data.forecast.daily[0].pop;
+    loadPage.rainChance.innerText = `${rainPercentage * 100}%`;
   },
 };
 

@@ -8704,15 +8704,22 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
-var apiKey = '8d8571b1c93bd4e2325c718b62e874dc'; // eslint-disable-next-line consistent-return
-
-var getLocation = /*#__PURE__*/function () {
+// eslint-disable-next-line consistent-return
+var getForecast = /*#__PURE__*/function () {
   var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
     var location,
         unit,
+        apiKey,
         url,
         response,
         locationData,
+        countryCode,
+        city,
+        longitude,
+        latitude,
+        url2,
+        response2,
+        forecast,
         _args = arguments;
     return _regeneratorRuntime().wrap(function _callee$(_context) {
       while (1) {
@@ -8720,95 +8727,59 @@ var getLocation = /*#__PURE__*/function () {
           case 0:
             location = _args.length > 0 && _args[0] !== undefined ? _args[0] : 'Amsterdam';
             unit = _args.length > 1 && _args[1] !== undefined ? _args[1] : 'metric';
+            apiKey = '8d8571b1c93bd4e2325c718b62e874dc';
             url = "https://api.openweathermap.org/data/2.5/weather?q=".concat(location, "&appid=").concat(apiKey, "&units=").concat(unit);
-            _context.prev = 3;
-            _context.next = 6;
+            _context.prev = 4;
+            _context.next = 7;
             return fetch(url, {
               mode: 'cors'
             });
 
-          case 6:
+          case 7:
             response = _context.sent;
-            _context.next = 9;
+            _context.next = 10;
             return response.json();
 
-          case 9:
+          case 10:
             locationData = _context.sent;
-            return _context.abrupt("return", locationData);
-
-          case 13:
-            _context.prev = 13;
-            _context.t0 = _context["catch"](3);
-            console.error(_context.t0);
-
-          case 16:
-          case "end":
-            return _context.stop();
-        }
-      }
-    }, _callee, null, [[3, 13]]);
-  }));
-
-  return function getLocation() {
-    return _ref.apply(this, arguments);
-  };
-}();
-
-var getForecast = /*#__PURE__*/function () {
-  var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2(cityInput) {
-    var unit,
-        firstData,
-        countryCode,
-        city,
-        longitude,
-        latitude,
-        url,
-        response,
-        forecast,
-        _args2 = arguments;
-    return _regeneratorRuntime().wrap(function _callee2$(_context2) {
-      while (1) {
-        switch (_context2.prev = _context2.next) {
-          case 0:
-            unit = _args2.length > 1 && _args2[1] !== undefined ? _args2[1] : 'metric';
-            _context2.next = 3;
-            return getLocation(cityInput);
-
-          case 3:
-            firstData = _context2.sent;
-            countryCode = firstData.sys.country;
-            city = firstData.name;
-            longitude = firstData.coord.lon;
-            latitude = firstData.coord.lat;
-            url = "https://api.openweathermap.org/data/2.5/onecall?lat=".concat(latitude, "&lon=").concat(longitude, "&exclude=alerts,minutely&units=").concat(unit, "&appid=").concat(apiKey, "&lang=en");
-            _context2.next = 11;
-            return fetch(url, {
+            countryCode = locationData.sys.country;
+            city = locationData.name;
+            longitude = locationData.coord.lon;
+            latitude = locationData.coord.lat;
+            url2 = "https://api.openweathermap.org/data/2.5/onecall?lat=".concat(latitude, "&lon=").concat(longitude, "&exclude=alerts,minutely&units=").concat(unit, "&appid=").concat(apiKey, "&lang=en");
+            _context.next = 18;
+            return fetch(url2, {
               mode: 'cors'
             });
 
-          case 11:
-            response = _context2.sent;
-            _context2.next = 14;
-            return response.json();
+          case 18:
+            response2 = _context.sent;
+            _context.next = 21;
+            return response2.json();
 
-          case 14:
-            forecast = _context2.sent;
-            return _context2.abrupt("return", {
+          case 21:
+            forecast = _context.sent;
+            return _context.abrupt("return", {
               city: city,
               countryCode: countryCode,
               forecast: forecast
             });
 
-          case 16:
+          case 25:
+            _context.prev = 25;
+            _context.t0 = _context["catch"](4);
+            console.error(_context.t0);
+
+          case 28:
           case "end":
-            return _context2.stop();
+            return _context.stop();
         }
       }
-    }, _callee2);
+    }, _callee, null, [[4, 25]]);
   }));
 
-  return function getForecast(_x) {
-    return _ref2.apply(this, arguments);
+  return function getForecast() {
+    return _ref.apply(this, arguments);
   };
 }();
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({

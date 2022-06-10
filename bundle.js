@@ -8670,8 +8670,11 @@ var loadPage = {
             case 2:
               loadPage.data = _context.sent;
               console.log(loadPage.data);
+              loadPage.cacheDom();
+              loadPage.getCity();
+              loadPage.getCountry();
 
-            case 4:
+            case 7:
             case "end":
               return _context.stop();
           }
@@ -8684,7 +8687,18 @@ var loadPage = {
     }
 
     return init;
-  }()
+  }(),
+  cacheDom: function cacheDom() {
+    loadPage.input = document.querySelector('input');
+    loadPage.cityName = document.querySelector('#cityDate h2');
+    loadPage.date = document.querySelector('#cityDate h4');
+  },
+  getCity: function getCity() {
+    loadPage.cityName.innerText = loadPage.data.city;
+  },
+  getCountry: function getCountry() {
+    loadPage.cityName.innerText += ", ".concat(loadPage.data.countryCode);
+  }
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   loadPage: loadPage

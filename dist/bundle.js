@@ -8728,7 +8728,13 @@ var loadPage = {
     loadPage.date.innerText = formattedDate;
   },
   getWind: function getWind() {
-    loadPage.wind.innerText = Math.round(loadPage.data.forecast.current.wind_speed);
+    if (loadPage.data.unit === 'metric') {
+      console.log(loadPage.data.unit);
+      console.log("yes, you are here!");
+      loadPage.wind.innerText = "".concat(Math.round(loadPage.data.forecast.current.wind_speed * 3.6), " km/h");
+    } else if (loadPage.data.unit === 'imperial') {
+      loadPage.wind.innerText = "".concat(Math.round(loadPage.data.forecast.current.wind_speed), " mi/h");
+    }
   },
   getHumidity: function getHumidity() {
     loadPage.humidity.innerText = "".concat(loadPage.data.forecast.current.humidity, "%");

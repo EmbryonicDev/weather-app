@@ -48,7 +48,13 @@ export const loadPage = {
     loadPage.date.innerText = formattedDate;
   },
   getWind() {
-    loadPage.wind.innerText = Math.round(loadPage.data.forecast.current.wind_speed);
+    if (loadPage.data.unit === 'metric') {
+      console.log(loadPage.data.unit);
+      console.log("yes, you are here!")
+      loadPage.wind.innerText = `${Math.round((loadPage.data.forecast.current.wind_speed) * 3.6)} km/h`;
+    } else if (loadPage.data.unit === 'imperial') {
+      loadPage.wind.innerText = `${Math.round(loadPage.data.forecast.current.wind_speed)} mi/h`;
+    }
   },
   getHumidity() {
     loadPage.humidity.innerText = `${loadPage.data.forecast.current.humidity}%`;

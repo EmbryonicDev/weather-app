@@ -1,4 +1,4 @@
-import { format } from 'date-fns';
+import { format, fromUnixTime } from 'date-fns';
 import { getData } from './main-async';
 
 export const loadPage = {
@@ -15,6 +15,7 @@ export const loadPage = {
     loadPage.getWind();
     loadPage.getHumidity();
     loadPage.getUvIndex();
+    loadPage.getVisibility();
   },
   cacheDom() {
     loadPage.input = document.querySelector('input');
@@ -23,6 +24,7 @@ export const loadPage = {
     loadPage.wind = document.querySelector('#wind .dayData');
     loadPage.humidity = document.querySelector('#humidity .dayData');
     loadPage.uvIndex = document.querySelector('#uv .dayData');
+    loadPage.visibility = document.querySelector('#visibility .dayData');
   },
   getCity() {
     loadPage.cityName.innerText = loadPage.data.city;
@@ -43,6 +45,9 @@ export const loadPage = {
   },
   getUvIndex() {
     loadPage.uvIndex.innerText = `${loadPage.data.forecast.current.uvi}`;
+  },
+  getVisibility() {
+    loadPage.visibility.innerText = `${loadPage.data.forecast.current.visibility}`;
   },
 };
 

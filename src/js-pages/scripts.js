@@ -6,6 +6,7 @@ export const loadPage = {
   init: async (city, unit) => {
     loadPage.data = await getData(city, unit);
     console.log(loadPage.data);
+    console.log(loadPage.data.forecast.current);
 
     loadPage.cacheDom();
     loadPage.getCity();
@@ -13,6 +14,7 @@ export const loadPage = {
     loadPage.getDate();
     loadPage.getWind();
     loadPage.getHumidity();
+    loadPage.getUvIndex();
   },
   cacheDom() {
     loadPage.input = document.querySelector('input');
@@ -20,6 +22,7 @@ export const loadPage = {
     loadPage.date = document.querySelector('#cityDate h4');
     loadPage.wind = document.querySelector('#wind .dayData');
     loadPage.humidity = document.querySelector('#humidity .dayData');
+    loadPage.uvIndex = document.querySelector('#uv .dayData');
   },
   getCity() {
     loadPage.cityName.innerText = loadPage.data.city;
@@ -37,6 +40,9 @@ export const loadPage = {
   },
   getHumidity() {
     loadPage.humidity.innerText = `${loadPage.data.forecast.current.humidity}%`;
+  },
+  getUvIndex() {
+    loadPage.uvIndex.innerText = `${loadPage.data.forecast.current.uvi}`;
   },
 };
 

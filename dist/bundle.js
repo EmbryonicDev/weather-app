@@ -8672,14 +8672,16 @@ var loadPage = {
             case 2:
               loadPage.data = _context.sent;
               console.log(loadPage.data);
+              console.log(loadPage.data.forecast.current);
               loadPage.cacheDom();
               loadPage.getCity();
               loadPage.getCountry();
               loadPage.getDate();
               loadPage.getWind();
               loadPage.getHumidity();
+              loadPage.getUvIndex();
 
-            case 10:
+            case 12:
             case "end":
               return _context.stop();
           }
@@ -8699,6 +8701,7 @@ var loadPage = {
     loadPage.date = document.querySelector('#cityDate h4');
     loadPage.wind = document.querySelector('#wind .dayData');
     loadPage.humidity = document.querySelector('#humidity .dayData');
+    loadPage.uvIndex = document.querySelector('#uv .dayData');
   },
   getCity: function getCity() {
     loadPage.cityName.innerText = loadPage.data.city;
@@ -8716,6 +8719,9 @@ var loadPage = {
   },
   getHumidity: function getHumidity() {
     loadPage.humidity.innerText = "".concat(loadPage.data.forecast.current.humidity, "%");
+  },
+  getUvIndex: function getUvIndex() {
+    loadPage.uvIndex.innerText = "".concat(loadPage.data.forecast.current.uvi);
   }
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({

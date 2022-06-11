@@ -1,5 +1,7 @@
 import { format, fromUnixTime } from 'date-fns';
-import { celOrFah, changeTimeZone, countryName, getDistance } from './functions';
+import {
+  celOrFah, changeTimeZone, countryName, getDistance, titleCase,
+} from './functions';
 import { getData } from './main-async';
 
 export const loadPage = {
@@ -54,7 +56,8 @@ export const loadPage = {
       loadPage.weatherNow.temp.innerText = temp;
     },
     getSky() {
-      loadPage.weatherNow.sky.innerText = loadPage.data.forecast.current.weather[0].description;
+      const sky = titleCase(loadPage.data.forecast.current.weather[0].description);
+      loadPage.weatherNow.sky.innerText = sky;
     },
   },
 

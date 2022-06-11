@@ -43,13 +43,18 @@ export const loadPage = {
     init: () => {
       loadPage.weatherNow.cacheDom();
       loadPage.weatherNow.getTemp();
+      loadPage.weatherNow.getSky();
     },
     cacheDom() {
       loadPage.weatherNow.temp = document.querySelector('#dayMain span');
+      loadPage.weatherNow.sky = document.querySelector('#daySky');
     },
     getTemp() {
       const temp = celOrFah(loadPage.data.forecast.current.temp, loadPage.unitUsed);
       loadPage.weatherNow.temp.innerText = temp;
+    },
+    getSky() {
+      loadPage.weatherNow.sky.innerText = loadPage.data.forecast.current.weather[0].description;
     },
   },
 

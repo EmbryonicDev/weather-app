@@ -8722,13 +8722,18 @@ var loadPage = {
     init: function init() {
       loadPage.weatherNow.cacheDom();
       loadPage.weatherNow.getTemp();
+      loadPage.weatherNow.getSky();
     },
     cacheDom: function cacheDom() {
       loadPage.weatherNow.temp = document.querySelector('#dayMain span');
+      loadPage.weatherNow.sky = document.querySelector('#daySky');
     },
     getTemp: function getTemp() {
       var temp = (0,_functions__WEBPACK_IMPORTED_MODULE_0__.celOrFah)(loadPage.data.forecast.current.temp, loadPage.unitUsed);
       loadPage.weatherNow.temp.innerText = temp;
+    },
+    getSky: function getSky() {
+      loadPage.weatherNow.sky.innerText = loadPage.data.forecast.current.weather[0].description;
     }
   },
   dayDetails: {

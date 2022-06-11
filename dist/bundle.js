@@ -8851,7 +8851,7 @@ var celOrFah = function celOrFah(temp, unit) {
 var titleCase = function titleCase(str) {
   var returnValue = str.toLowerCase().split(' ');
 
-  for (var i = 0; i < str.length; i += 1) {
+  for (var i = 0; i < returnValue.length; i += 1) {
     returnValue[i] = returnValue[i].charAt(0).toUpperCase() + returnValue[i].slice(1);
   }
 

@@ -1,5 +1,5 @@
 import { format, fromUnixTime } from 'date-fns';
-import { changeTimeZone } from './functions';
+import { changeTimeZone, countryName } from './functions';
 import { getData } from './main-async';
 
 export const loadPage = {
@@ -41,7 +41,7 @@ export const loadPage = {
     loadPage.cityName.innerText = loadPage.data.city;
   },
   getCountry() {
-    loadPage.cityName.innerText += `, ${loadPage.data.countryCode}`;
+    loadPage.cityName.innerText += `, ${countryName.of(loadPage.data.countryCode)}`;
   },
   getDate() {
     let date = new Date();

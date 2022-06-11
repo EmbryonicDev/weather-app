@@ -8816,11 +8816,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "celOrFah": () => (/* binding */ celOrFah),
 /* harmony export */   "changeTimeZone": () => (/* binding */ changeTimeZone),
 /* harmony export */   "countryName": () => (/* binding */ countryName),
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__),
 /* harmony export */   "getDistance": () => (/* binding */ getDistance),
 /* harmony export */   "titleCase": () => (/* binding */ titleCase)
 /* harmony export */ });
-function changeTimeZone(date, timeZone) {
+var changeTimeZone = function changeTimeZone(date, timeZone) {
   if (typeof date === 'string') {
     return new Date(new Date(date).toLocaleString('en-US', {
       timeZone: timeZone
@@ -8830,7 +8829,7 @@ function changeTimeZone(date, timeZone) {
   return new Date(date.toLocaleString('en-US', {
     timeZone: timeZone
   }));
-} // Convert country code to full country name
+}; // Convert country code to full country name
 
 var countryName = new Intl.DisplayNames(['en'], {
   type: 'region'
@@ -8857,9 +8856,6 @@ var titleCase = function titleCase(str) {
 
   return returnValue.join(' ');
 };
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  changeTimeZone: changeTimeZone
-});
 
 /***/ }),
 /* 310 */

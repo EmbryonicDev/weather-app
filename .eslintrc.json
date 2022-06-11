@@ -11,11 +11,14 @@
         "ecmaVersion": "latest"
     },
     "rules": {
-        "semi": [2, "always"],
+        "semi": [
+            2,
+            "always"
+        ],
         "no-console": "off",
         "quotes": [
-          "error",
-          "single"
-        ]     
+            "error",
+            "single"
+        ]
     }
 }

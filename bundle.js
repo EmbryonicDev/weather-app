@@ -8763,7 +8763,7 @@ var loadPage = {
     },
     getChanceOfRain: function getChanceOfRain() {
       var rainPercentage = loadPage.data.forecast.daily[0].pop;
-      loadPage.dayDetails.rainChance.innerText = "".concat(rainPercentage * 100, "%");
+      loadPage.dayDetails.rainChance.innerText = "".concat(Math.round(rainPercentage * 100), "%");
     },
     getSunrise: function getSunrise() {
       var date = (0,date_fns__WEBPACK_IMPORTED_MODULE_3__["default"])(loadPage.data.forecast.current.sunrise);
@@ -12723,7 +12723,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-_js_pages_scripts__WEBPACK_IMPORTED_MODULE_0__.loadPage.init('Chad', 'imperial'); // loadPage.init();
+_js_pages_scripts__WEBPACK_IMPORTED_MODULE_0__.loadPage.init('Moat', 'imperial'); // loadPage.init();
 })();
 
 /******/ })()

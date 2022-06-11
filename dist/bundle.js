@@ -8745,7 +8745,7 @@ var loadPage = {
       if (loadPage.data.unit === 'metric') {
         loadPage.dayDetails.wind.innerText = "".concat(Math.round(loadPage.data.forecast.current.wind_speed * 3.6), " km/h");
       } else if (loadPage.data.unit === 'imperial') {
-        loadPage.dayDetails.wind.innerText = "".concat(Math.round(loadPage.data.forecast.current.wind_speed), " mi/h");
+        loadPage.dayDetails.wind.innerText = "".concat(Math.round(loadPage.data.forecast.current.wind_speed), " mph");
       }
     },
     getHumidity: function getHumidity() {

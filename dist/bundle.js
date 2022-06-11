@@ -8921,7 +8921,7 @@ var getData = /*#__PURE__*/function () {
             city = locationData.name;
             longitude = locationData.coord.lon;
             latitude = locationData.coord.lat;
-            url2 = "https://api.openweathermap.org/data/2.5/onecall?lat=".concat(latitude, "&\n    lon=").concat(longitude, "&exclude=alerts,minutely&units=").concat(unit, "&appid=").concat(apiKey);
+            url2 = "https://api.openweathermap.org/data/2.5/onecall?lat=".concat(latitude, "&lon=").concat(longitude, "&exclude=alerts,minutely&units=").concat(unit, "&appid=").concat(apiKey);
             _context.next = 18;
             return fetch(url2, {
               mode: 'cors'

@@ -8662,7 +8662,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 
 var loadPage = {
-  data: null,
   init: function () {
     var _init = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(city, unit) {
       return _regeneratorRuntime().wrap(function _callee$(_context) {

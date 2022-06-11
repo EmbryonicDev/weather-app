@@ -6,13 +6,11 @@ export const loadPage = {
   data: null,
   init: async (city, unit) => {
     loadPage.data = await getData(city, unit);
+    loadPage.placeDate.init();
     console.log(loadPage.data);
     console.log(loadPage.data.forecast.current);
 
     loadPage.cacheDom();
-    loadPage.getCity();
-    loadPage.getCountry();
-    loadPage.getDate();
     loadPage.getWind();
     loadPage.getHumidity();
     loadPage.getUvIndex();
@@ -23,10 +21,34 @@ export const loadPage = {
     loadPage.getSunset();
     loadPage.getPressure();
   },
+
+  placeDate: {
+    init: () => {
+      loadPage.placeDate.cacheDom();
+      loadPage.placeDate.getCity();
+      loadPage.placeDate.getCountry();
+      loadPage.placeDate.getDate();
+    },
+    cacheDom() {
+      loadPage.placeDate.cityName = document.querySelector('#cityDate h2');
+      loadPage.placeDate.date = document.querySelector('#cityDate h4');
+    },
+    getCity() {
+      loadPage.placeDate.cityName.innerText = loadPage.data.city;
+    },
+    getCountry() {
+      loadPage.placeDate.cityName.innerText += `, ${countryName.of(loadPage.data.countryCode)}`;
+    },
+    getDate() {
+      let date = new Date();
+      date = changeTimeZone(date, loadPage.data.forecast.timezone);
+      const formattedDate = format(date, 'eeee, d MMMM yyyy | H:mm');
+      loadPage.placeDate.date.innerText = formattedDate;
+    },
+  },
+
   cacheDom() {
     loadPage.input = document.querySelector('input');
-    loadPage.cityName = document.querySelector('#cityDate h2');
-    loadPage.date = document.querySelector('#cityDate h4');
     loadPage.wind = document.querySelector('#wind .dayData');
     loadPage.humidity = document.querySelector('#humidity .dayData');
     loadPage.uvIndex = document.querySelector('#uv .dayData');
@@ -36,18 +58,6 @@ export const loadPage = {
     loadPage.sunrise = document.querySelector('#sunrise .dayData');
     loadPage.sunset = document.querySelector('#sunset .dayData');
     loadPage.pressure = document.querySelector('#pressure .dayData');
-  },
-  getCity() {
-    loadPage.cityName.innerText = loadPage.data.city;
-  },
-  getCountry() {
-    loadPage.cityName.innerText += `, ${countryName.of(loadPage.data.countryCode)}`;
-  },
-  getDate() {
-    let date = new Date();
-    date = changeTimeZone(date, this.data.forecast.timezone);
-    const formattedDate = format(date, 'eeee, d MMMM yyyy | H:mm');
-    loadPage.date.innerText = formattedDate;
   },
   getWind() {
     if (loadPage.data.unit === 'metric') {

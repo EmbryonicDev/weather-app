@@ -84,7 +84,7 @@ export const loadPage = {
     },
     getChanceOfRain() {
       const rainPercentage = loadPage.data.forecast.daily[0].pop;
-      loadPage.dayDetails.rainChance.innerText = `${rainPercentage * 100}%`;
+      loadPage.dayDetails.rainChance.innerText = `${Math.round(rainPercentage * 100)}%`;
     },
     getSunrise() {
       let date = fromUnixTime(loadPage.data.forecast.current.sunrise);

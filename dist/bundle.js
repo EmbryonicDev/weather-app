@@ -8675,20 +8675,11 @@ var loadPage = {
             case 2:
               loadPage.data = _context.sent;
               loadPage.placeDate.init();
+              loadPage.dayDetails.init();
               console.log(loadPage.data);
               console.log(loadPage.data.forecast.current);
-              loadPage.cacheDom();
-              loadPage.getWind();
-              loadPage.getHumidity();
-              loadPage.getUvIndex();
-              loadPage.getVisibility();
-              loadPage.getClouds();
-              loadPage.getChanceOfRain();
-              loadPage.getSunrise();
-              loadPage.getSunset();
-              loadPage.getPressure();
 
-            case 16:
+            case 7:
             case "end":
               return _context.stop();
           }
@@ -8726,55 +8717,68 @@ var loadPage = {
       loadPage.placeDate.date.innerText = formattedDate;
     }
   },
-  cacheDom: function cacheDom() {
-    loadPage.input = document.querySelector('input');
-    loadPage.wind = document.querySelector('#wind .dayData');
-    loadPage.humidity = document.querySelector('#humidity .dayData');
-    loadPage.uvIndex = document.querySelector('#uv .dayData');
-    loadPage.visibility = document.querySelector('#visibility .dayData');
-    loadPage.clouds = document.querySelector('#clouds .dayData');
-    loadPage.rainChance = document.querySelector('#rainChance .dayData');
-    loadPage.sunrise = document.querySelector('#sunrise .dayData');
-    loadPage.sunset = document.querySelector('#sunset .dayData');
-    loadPage.pressure = document.querySelector('#pressure .dayData');
-  },
-  getWind: function getWind() {
-    if (loadPage.data.unit === 'metric') {
-      loadPage.wind.innerText = "".concat(Math.round(loadPage.data.forecast.current.wind_speed * 3.6), " km/h");
-    } else if (loadPage.data.unit === 'imperial') {
-      loadPage.wind.innerText = "".concat(Math.round(loadPage.data.forecast.current.wind_speed), " mi/h");
+  dayDetails: {
+    init: function init() {
+      loadPage.dayDetails.cacheDom();
+      loadPage.dayDetails.getWind();
+      loadPage.dayDetails.getHumidity();
+      loadPage.dayDetails.getUvIndex();
+      loadPage.dayDetails.getVisibility();
+      loadPage.dayDetails.getClouds();
+      loadPage.dayDetails.getChanceOfRain();
+      loadPage.dayDetails.getSunrise();
+      loadPage.dayDetails.getSunset();
+      loadPage.dayDetails.getPressure();
+    },
+    cacheDom: function cacheDom() {
+      loadPage.dayDetails.wind = document.querySelector('#wind .dayData');
+      loadPage.dayDetails.humidity = document.querySelector('#humidity .dayData');
+      loadPage.dayDetails.uvIndex = document.querySelector('#uv .dayData');
+      loadPage.dayDetails.visibility = document.querySelector('#visibility .dayData');
+      loadPage.dayDetails.clouds = document.querySelector('#clouds .dayData');
+      loadPage.dayDetails.rainChance = document.querySelector('#rainChance .dayData');
+      loadPage.dayDetails.sunrise = document.querySelector('#sunrise .dayData');
+      loadPage.dayDetails.sunset = document.querySelector('#sunset .dayData');
+      loadPage.dayDetails.pressure = document.querySelector('#pressure .dayData');
+    },
+    getWind: function getWind() {
+      if (loadPage.data.unit === 'metric') {
+        loadPage.dayDetails.wind.innerText = "".concat(Math.round(loadPage.data.forecast.current.wind_speed * 3.6), " km/h");
+      } else if (loadPage.data.unit === 'imperial') {
+        loadPage.dayDetails.wind.innerText = "".concat(Math.round(loadPage.data.forecast.current.wind_speed), " mi/h");
+      }
+    },
+    getHumidity: function getHumidity() {
+      loadPage.dayDetails.humidity.innerText = "".concat(loadPage.data.forecast.current.humidity, "%");
+    },
+    getUvIndex: function getUvIndex() {
+      loadPage.dayDetails.uvIndex.innerText = "".concat(Math.round(loadPage.data.forecast.current.uvi));
+    },
+    getVisibility: function getVisibility() {
+      loadPage.dayDetails.visibility.innerText = "".concat(loadPage.data.forecast.current.visibility);
+    },
+    getClouds: function getClouds() {
+      loadPage.dayDetails.clouds.innerText = "".concat(loadPage.data.forecast.current.clouds, "%");
+    },
+    getChanceOfRain: function getChanceOfRain() {
+      var rainPercentage = loadPage.data.forecast.daily[0].pop;
+      loadPage.dayDetails.rainChance.innerText = "".concat(rainPercentage * 100, "%");
+    },
+    getSunrise: function getSunrise() {
+      var date = (0,date_fns__WEBPACK_IMPORTED_MODULE_3__["default"])(loadPage.data.forecast.current.sunrise);
+      date = (0,_functions__WEBPACK_IMPORTED_MODULE_0__.changeTimeZone)(date, loadPage.data.forecast.timezone);
+      var extractedTime = (0,date_fns__WEBPACK_IMPORTED_MODULE_2__["default"])(date, 'H:mm');
+      loadPage.dayDetails.sunrise.innerText = extractedTime;
+    },
+    getSunset: function getSunset() {
+      var date = (0,date_fns__WEBPACK_IMPORTED_MODULE_3__["default"])(loadPage.data.forecast.current.sunset);
+      date = (0,_functions__WEBPACK_IMPORTED_MODULE_0__.changeTimeZone)(date, loadPage.data.forecast.timezone);
+      var extractedTime = (0,date_fns__WEBPACK_IMPORTED_MODULE_2__["default"])(date, 'H:mm');
+      loadPage.dayDetails.sunset.innerText = extractedTime;
+    },
+    getPressure: function getPressure() {
+      loadPage.dayDetails.pressure.innerText = "".concat(loadPage.data.forecast.current.pressure, " hPa");
     }
-  },
-  getHumidity: function getHumidity() {
-    loadPage.humidity.innerText = "".concat(loadPage.data.forecast.current.humidity, "%");
-  },
-  getUvIndex: function getUvIndex() {
-    loadPage.uvIndex.innerText = "".concat(Math.round(loadPage.data.forecast.current.uvi));
-  },
-  getVisibility: function getVisibility() {
-    loadPage.visibility.innerText = "".concat(loadPage.data.forecast.current.visibility);
-  },
-  getClouds: function getClouds() {
-    loadPage.clouds.innerText = "".concat(loadPage.data.forecast.current.clouds, "%");
-  },
-  getChanceOfRain: function getChanceOfRain() {
-    var rainPercentage = loadPage.data.forecast.daily[0].pop;
-    loadPage.rainChance.innerText = "".concat(rainPercentage * 100, "%");
-  },
-  getSunrise: function getSunrise() {
-    var date = (0,date_fns__WEBPACK_IMPORTED_MODULE_3__["default"])(loadPage.data.forecast.current.sunrise);
-    date = (0,_functions__WEBPACK_IMPORTED_MODULE_0__.changeTimeZone)(date, this.data.forecast.timezone);
-    var extractedTime = (0,date_fns__WEBPACK_IMPORTED_MODULE_2__["default"])(date, 'H:mm');
-    loadPage.sunrise.innerText = extractedTime;
-  },
-  getSunset: function getSunset() {
-    var date = (0,date_fns__WEBPACK_IMPORTED_MODULE_3__["default"])(loadPage.data.forecast.current.sunset);
-    date = (0,_functions__WEBPACK_IMPORTED_MODULE_0__.changeTimeZone)(date, this.data.forecast.timezone);
-    var extractedTime = (0,date_fns__WEBPACK_IMPORTED_MODULE_2__["default"])(date, 'H:mm');
-    loadPage.sunset.innerText = extractedTime;
-  },
-  getPressure: function getPressure() {
-    loadPage.pressure.innerText = "".concat(loadPage.data.forecast.current.pressure, " hPa");
   }
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({

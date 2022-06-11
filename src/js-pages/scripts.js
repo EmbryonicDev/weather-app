@@ -7,19 +7,10 @@ export const loadPage = {
   init: async (city, unit) => {
     loadPage.data = await getData(city, unit);
     loadPage.placeDate.init();
+    loadPage.dayDetails.init();
+
     console.log(loadPage.data);
     console.log(loadPage.data.forecast.current);
-
-    loadPage.cacheDom();
-    loadPage.getWind();
-    loadPage.getHumidity();
-    loadPage.getUvIndex();
-    loadPage.getVisibility();
-    loadPage.getClouds();
-    loadPage.getChanceOfRain();
-    loadPage.getSunrise();
-    loadPage.getSunset();
-    loadPage.getPressure();
   },
 
   placeDate: {
@@ -47,55 +38,68 @@ export const loadPage = {
     },
   },
 
-  cacheDom() {
-    loadPage.input = document.querySelector('input');
-    loadPage.wind = document.querySelector('#wind .dayData');
-    loadPage.humidity = document.querySelector('#humidity .dayData');
-    loadPage.uvIndex = document.querySelector('#uv .dayData');
-    loadPage.visibility = document.querySelector('#visibility .dayData');
-    loadPage.clouds = document.querySelector('#clouds .dayData');
-    loadPage.rainChance = document.querySelector('#rainChance .dayData');
-    loadPage.sunrise = document.querySelector('#sunrise .dayData');
-    loadPage.sunset = document.querySelector('#sunset .dayData');
-    loadPage.pressure = document.querySelector('#pressure .dayData');
-  },
-  getWind() {
-    if (loadPage.data.unit === 'metric') {
-      loadPage.wind.innerText = `${Math.round((loadPage.data.forecast.current.wind_speed) * 3.6)} km/h`;
-    } else if (loadPage.data.unit === 'imperial') {
-      loadPage.wind.innerText = `${Math.round(loadPage.data.forecast.current.wind_speed)} mi/h`;
-    }
-  },
-  getHumidity() {
-    loadPage.humidity.innerText = `${loadPage.data.forecast.current.humidity}%`;
-  },
-  getUvIndex() {
-    loadPage.uvIndex.innerText = `${Math.round(loadPage.data.forecast.current.uvi)}`;
-  },
-  getVisibility() {
-    loadPage.visibility.innerText = `${loadPage.data.forecast.current.visibility}`;
-  },
-  getClouds() {
-    loadPage.clouds.innerText = `${loadPage.data.forecast.current.clouds}%`;
-  },
-  getChanceOfRain() {
-    const rainPercentage = loadPage.data.forecast.daily[0].pop;
-    loadPage.rainChance.innerText = `${rainPercentage * 100}%`;
-  },
-  getSunrise() {
-    let date = fromUnixTime(loadPage.data.forecast.current.sunrise);
-    date = changeTimeZone(date, this.data.forecast.timezone);
-    const extractedTime = format(date, 'H:mm');
-    loadPage.sunrise.innerText = extractedTime;
-  },
-  getSunset() {
-    let date = fromUnixTime(loadPage.data.forecast.current.sunset);
-    date = changeTimeZone(date, this.data.forecast.timezone);
-    const extractedTime = format(date, 'H:mm');
-    loadPage.sunset.innerText = extractedTime;
-  },
-  getPressure() {
-    loadPage.pressure.innerText = `${loadPage.data.forecast.current.pressure} hPa`;
+  dayDetails: {
+    init: () => {
+      loadPage.dayDetails.cacheDom();
+      loadPage.dayDetails.getWind();
+      loadPage.dayDetails.getHumidity();
+      loadPage.dayDetails.getUvIndex();
+      loadPage.dayDetails.getVisibility();
+      loadPage.dayDetails.getClouds();
+      loadPage.dayDetails.getChanceOfRain();
+      loadPage.dayDetails.getSunrise();
+      loadPage.dayDetails.getSunset();
+      loadPage.dayDetails.getPressure();
+    },
+    cacheDom() {
+      loadPage.dayDetails.wind = document.querySelector('#wind .dayData');
+      loadPage.dayDetails.humidity = document.querySelector('#humidity .dayData');
+      loadPage.dayDetails.uvIndex = document.querySelector('#uv .dayData');
+      loadPage.dayDetails.visibility = document.querySelector('#visibility .dayData');
+      loadPage.dayDetails.clouds = document.querySelector('#clouds .dayData');
+      loadPage.dayDetails.rainChance = document.querySelector('#rainChance .dayData');
+      loadPage.dayDetails.sunrise = document.querySelector('#sunrise .dayData');
+      loadPage.dayDetails.sunset = document.querySelector('#sunset .dayData');
+      loadPage.dayDetails.pressure = document.querySelector('#pressure .dayData');
+    },
+    getWind() {
+      if (loadPage.data.unit === 'metric') {
+        loadPage.dayDetails.wind.innerText = `${Math.round((loadPage.data.forecast.current.wind_speed) * 3.6)} km/h`;
+      } else if (loadPage.data.unit === 'imperial') {
+        loadPage.dayDetails.wind.innerText = `${Math.round(loadPage.data.forecast.current.wind_speed)} mi/h`;
+      }
+    },
+    getHumidity() {
+      loadPage.dayDetails.humidity.innerText = `${loadPage.data.forecast.current.humidity}%`;
+    },
+    getUvIndex() {
+      loadPage.dayDetails.uvIndex.innerText = `${Math.round(loadPage.data.forecast.current.uvi)}`;
+    },
+    getVisibility() {
+      loadPage.dayDetails.visibility.innerText = `${loadPage.data.forecast.current.visibility}`;
+    },
+    getClouds() {
+      loadPage.dayDetails.clouds.innerText = `${loadPage.data.forecast.current.clouds}%`;
+    },
+    getChanceOfRain() {
+      const rainPercentage = loadPage.data.forecast.daily[0].pop;
+      loadPage.dayDetails.rainChance.innerText = `${rainPercentage * 100}%`;
+    },
+    getSunrise() {
+      let date = fromUnixTime(loadPage.data.forecast.current.sunrise);
+      date = changeTimeZone(date, loadPage.data.forecast.timezone);
+      const extractedTime = format(date, 'H:mm');
+      loadPage.dayDetails.sunrise.innerText = extractedTime;
+    },
+    getSunset() {
+      let date = fromUnixTime(loadPage.data.forecast.current.sunset);
+      date = changeTimeZone(date, loadPage.data.forecast.timezone);
+      const extractedTime = format(date, 'H:mm');
+      loadPage.dayDetails.sunset.innerText = extractedTime;
+    },
+    getPressure() {
+      loadPage.dayDetails.pressure.innerText = `${loadPage.data.forecast.current.pressure} hPa`;
+    },
   },
 };
 

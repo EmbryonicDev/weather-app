@@ -8675,11 +8675,12 @@ var loadPage = {
               loadPage.data = _context.sent;
               loadPage.unitUsed = loadPage.data.unit;
               loadPage.placeDate.init();
+              loadPage.weatherNow.init();
               loadPage.dayDetails.init();
               console.log(loadPage.data);
               console.log(loadPage.data.forecast.current);
 
-            case 8:
+            case 9:
             case "end":
               return _context.stop();
           }
@@ -8715,6 +8716,19 @@ var loadPage = {
       date = (0,_functions__WEBPACK_IMPORTED_MODULE_0__.changeTimeZone)(date, loadPage.data.forecast.timezone);
       var formattedDate = (0,date_fns__WEBPACK_IMPORTED_MODULE_2__["default"])(date, 'eeee, d MMMM yyyy | H:mm');
       loadPage.placeDate.date.innerText = formattedDate;
+    }
+  },
+  weatherNow: {
+    init: function init() {
+      loadPage.weatherNow.cacheDom();
+      loadPage.weatherNow.getTemp();
+    },
+    cacheDom: function cacheDom() {
+      loadPage.weatherNow.temp = document.querySelector('#dayMain span');
+    },
+    getTemp: function getTemp() {
+      var temp = (0,_functions__WEBPACK_IMPORTED_MODULE_0__.celOrFah)(loadPage.data.forecast.current.temp, loadPage.unitUsed);
+      loadPage.weatherNow.temp.innerText = temp;
     }
   },
   dayDetails: {
@@ -12589,6 +12603,7 @@ function throwProtectedError(token, format, input) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "celOrFah": () => (/* binding */ celOrFah),
 /* harmony export */   "changeTimeZone": () => (/* binding */ changeTimeZone),
 /* harmony export */   "countryName": () => (/* binding */ countryName),
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__),
@@ -12608,11 +12623,18 @@ function changeTimeZone(date, timeZone) {
 
 var countryName = new Intl.DisplayNames(['en'], {
   type: 'region'
-});
+}); // Meters to km / mi
+
 var getDistance = function getDistance(distanceInMeters, unit) {
   var returnValue;
   if (unit === 'metric') returnValue = "".concat(Math.round(distanceInMeters / 1000), " km");
   if (unit === 'imperial') returnValue = "".concat(Math.round(distanceInMeters / 1609), " mi");
+  return returnValue;
+};
+var celOrFah = function celOrFah(temp, unit) {
+  var returnValue;
+  if (unit === 'metric') returnValue = "".concat(Math.round(temp), " \xB0C");
+  if (unit === 'imperial') returnValue = "".concat(Math.round(temp), " \xB0F");
   return returnValue;
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({

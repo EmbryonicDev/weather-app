@@ -1,5 +1,5 @@
 import { format, fromUnixTime } from 'date-fns';
-import { changeTimeZone, countryName, getDistance } from './functions';
+import { celOrFah, changeTimeZone, countryName, getDistance } from './functions';
 import { getData } from './main-async';
 
 export const loadPage = {
@@ -7,6 +7,7 @@ export const loadPage = {
     loadPage.data = await getData(city, unit);
     loadPage.unitUsed = loadPage.data.unit;
     loadPage.placeDate.init();
+    loadPage.weatherNow.init();
     loadPage.dayDetails.init();
 
     console.log(loadPage.data);
@@ -35,6 +36,20 @@ export const loadPage = {
       date = changeTimeZone(date, loadPage.data.forecast.timezone);
       const formattedDate = format(date, 'eeee, d MMMM yyyy | H:mm');
       loadPage.placeDate.date.innerText = formattedDate;
+    },
+  },
+
+  weatherNow: {
+    init: () => {
+      loadPage.weatherNow.cacheDom();
+      loadPage.weatherNow.getTemp();
+    },
+    cacheDom() {
+      loadPage.weatherNow.temp = document.querySelector('#dayMain span');
+    },
+    getTemp() {
+      const temp = celOrFah(loadPage.data.forecast.current.temp, loadPage.unitUsed);
+      loadPage.weatherNow.temp.innerText = temp;
     },
   },
 

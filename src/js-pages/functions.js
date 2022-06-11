@@ -26,8 +26,8 @@ export const getDistance = (distanceInMeters, unit) => {
 
 export const celOrFah = (temp, unit) => {
   let returnValue;
-  if (unit === 'metric') returnValue = `${Math.round(temp)} C°`;
-  if (unit === 'imperial') returnValue = `${Math.round(temp)} F°`;
+  if (unit === 'metric') returnValue = `${Math.round(temp)} °C`;
+  if (unit === 'imperial') returnValue = `${Math.round(temp)} °F`;
   return returnValue;
 };
 

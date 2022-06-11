@@ -11,7 +11,8 @@ export const getData = async (location = 'Amsterdam', unit = 'metric') => {
     const city = locationData.name;
     const longitude = locationData.coord.lon;
     const latitude = locationData.coord.lat;
-    const url2 = `https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&exclude=alerts,minutely&units=${unit}&appid=${apiKey}&lang=en`;
+    const url2 = `https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&
+    lon=${longitude}&exclude=alerts,minutely&units=${unit}&appid=${apiKey}`;
 
     const response2 = await fetch(url2, { mode: 'cors' });
     const forecast = await response2.json();

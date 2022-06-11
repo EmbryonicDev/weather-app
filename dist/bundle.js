@@ -8673,12 +8673,13 @@ var loadPage = {
 
             case 2:
               loadPage.data = _context.sent;
+              loadPage.unitUsed = loadPage.data.unit;
               loadPage.placeDate.init();
               loadPage.dayDetails.init();
               console.log(loadPage.data);
               console.log(loadPage.data.forecast.current);
 
-            case 7:
+            case 8:
             case "end":
               return _context.stop();
           }

@@ -5,6 +5,7 @@ import { getData } from './main-async';
 export const loadPage = {
   init: async (city, unit) => {
     loadPage.data = await getData(city, unit);
+    loadPage.unitUsed = loadPage.data.unit;
     loadPage.placeDate.init();
     loadPage.dayDetails.init();
 

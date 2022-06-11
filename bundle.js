@@ -8674,12 +8674,10 @@ var loadPage = {
 
             case 2:
               loadPage.data = _context.sent;
+              loadPage.placeDate.init();
               console.log(loadPage.data);
               console.log(loadPage.data.forecast.current);
               loadPage.cacheDom();
-              loadPage.getCity();
-              loadPage.getCountry();
-              loadPage.getDate();
               loadPage.getWind();
               loadPage.getHumidity();
               loadPage.getUvIndex();
@@ -8690,7 +8688,7 @@ var loadPage = {
               loadPage.getSunset();
               loadPage.getPressure();
 
-            case 18:
+            case 16:
             case "end":
               return _context.stop();
           }
@@ -8704,10 +8702,32 @@ var loadPage = {
 
     return init;
   }(),
+  placeDate: {
+    init: function init() {
+      loadPage.placeDate.cacheDom();
+      loadPage.placeDate.getCity();
+      loadPage.placeDate.getCountry();
+      loadPage.placeDate.getDate();
+    },
+    cacheDom: function cacheDom() {
+      loadPage.placeDate.cityName = document.querySelector('#cityDate h2');
+      loadPage.placeDate.date = document.querySelector('#cityDate h4');
+    },
+    getCity: function getCity() {
+      loadPage.placeDate.cityName.innerText = loadPage.data.city;
+    },
+    getCountry: function getCountry() {
+      loadPage.placeDate.cityName.innerText += ", ".concat(_functions__WEBPACK_IMPORTED_MODULE_0__.countryName.of(loadPage.data.countryCode));
+    },
+    getDate: function getDate() {
+      var date = new Date();
+      date = (0,_functions__WEBPACK_IMPORTED_MODULE_0__.changeTimeZone)(date, loadPage.data.forecast.timezone);
+      var formattedDate = (0,date_fns__WEBPACK_IMPORTED_MODULE_2__["default"])(date, 'eeee, d MMMM yyyy | H:mm');
+      loadPage.placeDate.date.innerText = formattedDate;
+    }
+  },
   cacheDom: function cacheDom() {
     loadPage.input = document.querySelector('input');
-    loadPage.cityName = document.querySelector('#cityDate h2');
-    loadPage.date = document.querySelector('#cityDate h4');
     loadPage.wind = document.querySelector('#wind .dayData');
     loadPage.humidity = document.querySelector('#humidity .dayData');
     loadPage.uvIndex = document.querySelector('#uv .dayData');
@@ -8717,18 +8737,6 @@ var loadPage = {
     loadPage.sunrise = document.querySelector('#sunrise .dayData');
     loadPage.sunset = document.querySelector('#sunset .dayData');
     loadPage.pressure = document.querySelector('#pressure .dayData');
-  },
-  getCity: function getCity() {
-    loadPage.cityName.innerText = loadPage.data.city;
-  },
-  getCountry: function getCountry() {
-    loadPage.cityName.innerText += ", ".concat(_functions__WEBPACK_IMPORTED_MODULE_0__.countryName.of(loadPage.data.countryCode));
-  },
-  getDate: function getDate() {
-    var date = new Date();
-    date = (0,_functions__WEBPACK_IMPORTED_MODULE_0__.changeTimeZone)(date, this.data.forecast.timezone);
-    var formattedDate = (0,date_fns__WEBPACK_IMPORTED_MODULE_2__["default"])(date, 'eeee, d MMMM yyyy | H:mm');
-    loadPage.date.innerText = formattedDate;
   },
   getWind: function getWind() {
     if (loadPage.data.unit === 'metric') {

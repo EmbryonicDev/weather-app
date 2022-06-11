@@ -1,5 +1,5 @@
 import { format, fromUnixTime } from 'date-fns';
-import { changeTimeZone, countryName } from './functions';
+import { changeTimeZone, countryName, getDistance } from './functions';
 import { getData } from './main-async';
 
 export const loadPage = {
@@ -63,7 +63,7 @@ export const loadPage = {
       loadPage.dayDetails.pressure = document.querySelector('#pressure .dayData');
     },
     getWind() {
-      if (loadPage.data.unit === 'metric') {
+      if (loadPage.unitUsed === 'metric') {
         loadPage.dayDetails.wind.innerText = `${Math.round((loadPage.data.forecast.current.wind_speed) * 3.6)} km/h`;
       } else if (loadPage.data.unit === 'imperial') {
         loadPage.dayDetails.wind.innerText = `${Math.round(loadPage.data.forecast.current.wind_speed)} mph`;
@@ -76,7 +76,8 @@ export const loadPage = {
       loadPage.dayDetails.uvIndex.innerText = `${Math.round(loadPage.data.forecast.current.uvi)}`;
     },
     getVisibility() {
-      loadPage.dayDetails.visibility.innerText = `${loadPage.data.forecast.current.visibility}`;
+      const visDistance = getDistance(loadPage.data.forecast.current.visibility, loadPage.unitUsed);
+      loadPage.dayDetails.visibility.innerText = visDistance;
     },
     getClouds() {
       loadPage.dayDetails.clouds.innerText = `${loadPage.data.forecast.current.clouds}%`;

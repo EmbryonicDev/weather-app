@@ -8742,7 +8742,7 @@ var loadPage = {
       loadPage.dayDetails.pressure = document.querySelector('#pressure .dayData');
     },
     getWind: function getWind() {
-      if (loadPage.data.unit === 'metric') {
+      if (loadPage.unitUsed === 'metric') {
         loadPage.dayDetails.wind.innerText = "".concat(Math.round(loadPage.data.forecast.current.wind_speed * 3.6), " km/h");
       } else if (loadPage.data.unit === 'imperial') {
         loadPage.dayDetails.wind.innerText = "".concat(Math.round(loadPage.data.forecast.current.wind_speed), " mph");
@@ -8755,7 +8755,8 @@ var loadPage = {
       loadPage.dayDetails.uvIndex.innerText = "".concat(Math.round(loadPage.data.forecast.current.uvi));
     },
     getVisibility: function getVisibility() {
-      loadPage.dayDetails.visibility.innerText = "".concat(loadPage.data.forecast.current.visibility);
+      var visDistance = (0,_functions__WEBPACK_IMPORTED_MODULE_0__.getDistance)(loadPage.data.forecast.current.visibility, loadPage.unitUsed);
+      loadPage.dayDetails.visibility.innerText = visDistance;
     },
     getClouds: function getClouds() {
       loadPage.dayDetails.clouds.innerText = "".concat(loadPage.data.forecast.current.clouds, "%");
@@ -12590,7 +12591,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "changeTimeZone": () => (/* binding */ changeTimeZone),
 /* harmony export */   "countryName": () => (/* binding */ countryName),
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__),
+/* harmony export */   "getDistance": () => (/* binding */ getDistance)
 /* harmony export */ });
 function changeTimeZone(date, timeZone) {
   if (typeof date === 'string') {
@@ -12607,6 +12609,12 @@ function changeTimeZone(date, timeZone) {
 var countryName = new Intl.DisplayNames(['en'], {
   type: 'region'
 });
+var getDistance = function getDistance(distanceInMeters, unit) {
+  var returnValue;
+  if (unit === 'metric') returnValue = "".concat(Math.round(distanceInMeters / 1000), " km");
+  if (unit === 'imperial') returnValue = "".concat(Math.round(distanceInMeters / 1609), " mi");
+  return returnValue;
+};
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   changeTimeZone: changeTimeZone
 });
@@ -12715,7 +12723,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-_js_pages_scripts__WEBPACK_IMPORTED_MODULE_0__.loadPage.init();
+_js_pages_scripts__WEBPACK_IMPORTED_MODULE_0__.loadPage.init('Chad', 'imperial'); // loadPage.init();
 })();
 
 /******/ })()

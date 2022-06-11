@@ -8722,7 +8722,7 @@ var loadPage = {
     loadPage.cityName.innerText = loadPage.data.city;
   },
   getCountry: function getCountry() {
-    loadPage.cityName.innerText += ", ".concat(loadPage.data.countryCode);
+    loadPage.cityName.innerText += ", ".concat(_functions__WEBPACK_IMPORTED_MODULE_0__.countryName.of(loadPage.data.countryCode));
   },
   getDate: function getDate() {
     var date = new Date();
@@ -12577,6 +12577,7 @@ function throwProtectedError(token, format, input) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "changeTimeZone": () => (/* binding */ changeTimeZone),
+/* harmony export */   "countryName": () => (/* binding */ countryName),
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 function changeTimeZone(date, timeZone) {
@@ -12589,7 +12590,11 @@ function changeTimeZone(date, timeZone) {
   return new Date(date.toLocaleString('en-US', {
     timeZone: timeZone
   }));
-}
+} // Convert country code to full country name
+
+var countryName = new Intl.DisplayNames(['en'], {
+  type: 'region'
+});
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   changeTimeZone: changeTimeZone
 });

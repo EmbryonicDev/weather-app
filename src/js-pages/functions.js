@@ -1,4 +1,4 @@
-export function changeTimeZone(date, timeZone) {
+export const changeTimeZone = (date, timeZone) => {
   if (typeof date === 'string') {
     return new Date(
       new Date(date).toLocaleString('en-US', {
@@ -11,7 +11,7 @@ export function changeTimeZone(date, timeZone) {
       timeZone,
     }),
   );
-}
+};
 
 // Convert country code to full country name
 export const countryName = new Intl.DisplayNames(['en'], { type: 'region' });
@@ -38,5 +38,3 @@ export const titleCase = (str) => {
   }
   return returnValue.join(' ');
 };
-
-export default { changeTimeZone };

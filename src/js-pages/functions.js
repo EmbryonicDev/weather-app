@@ -31,4 +31,12 @@ export const celOrFah = (temp, unit) => {
   return returnValue;
 };
 
+export const titleCase = (str) => {
+  const returnValue = str.toLowerCase().split(' ');
+  for (let i = 0; i < str.length; i += 1) {
+    returnValue[i] = returnValue[i].charAt(0).toUpperCase() + returnValue[i].slice(1);
+  }
+  return returnValue.join(' ');
+};
+
 export default { changeTimeZone };

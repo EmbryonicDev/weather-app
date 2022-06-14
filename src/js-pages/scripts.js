@@ -66,11 +66,13 @@ export const loadPage = {
       loadPage.weatherNow.getTemp();
       loadPage.weatherNow.getSky();
       loadPage.weatherNow.getIcon();
+      loadPage.weatherNow.getFeelsLike();
     },
     cacheDom() {
       loadPage.weatherNow.temp = document.querySelector('#dayMain span');
       loadPage.weatherNow.sky = document.querySelector('#daySky');
       loadPage.weatherNow.weatherIcon = document.querySelector('#dayMain > p > img');
+      loadPage.weatherNow.feelsLike = document.querySelector('#feelsLike span');
     },
     getTemp() {
       const temp = celOrFah(loadPage.data.forecast.current.temp, loadPage.unitUsed);
@@ -103,6 +105,10 @@ export const loadPage = {
       if (iconCode === '50n') weatherIcon.src = icon50n;
       if (iconCode === '50d') weatherIcon.src = icon50d;
       if (iconCode === '1232n') weatherIcon.src = icon1232n;
+    },
+    getFeelsLike() {
+      const temp = celOrFah(loadPage.data.forecast.current.feels_like, loadPage.unitUsed);
+      loadPage.weatherNow.feelsLike.innerText = temp;
     },
   },
 

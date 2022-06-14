@@ -50,6 +50,11 @@ form p {
     grid-column: 1 / span 2;
 }
 
+/* Current weather icon */
+#dayMain > p > img {
+    height: 80px;
+}
+
 #dayDetails {
     display: grid;
     grid-template: repeat(3, 1fr) / repeat(3, 1fr);

@@ -30,6 +30,7 @@ export const loadPage = {
     loadPage.placeDate.init();
     loadPage.weatherNow.init();
     loadPage.dayDetails.init();
+    loadPage.weekly.init();
 
     console.log(loadPage.data);
     console.log(loadPage.data.forecast.current);
@@ -51,9 +52,7 @@ export const loadPage = {
   },
 
   getIcon(iconCode, element) {
-    // const iconCode = loadPage.data.forecast.current.weather[0].icon;
     const dummyElement = element;
-    // const { weatherIcon } = loadPage.weatherNow;
     if (iconCode === '01d') dummyElement.src = icon01d;
     if (iconCode === '01n') dummyElement.src = icon01n;
     if (iconCode === '02d') dummyElement.src = icon02d;
@@ -183,6 +182,33 @@ export const loadPage = {
       loadPage.dayDetails.pressure.innerText = `${loadPage.data.forecast.current.pressure} hPa`;
     },
   },
+
+  weekly: {
+    init() {
+      loadPage.weekly.getWeekForecast();
+    },
+    getWeekForecast() {
+      const weekDay = document.querySelectorAll('.day');
+      const icon = document.querySelectorAll('.dayIcon');
+      const maxTemp = document.querySelectorAll('.dayMax');
+      const minTemp = document.querySelectorAll('.dayMin');
+      const wind = document.querySelectorAll('.dayWind');
+
+      for (let i = 1; i < 8; i += 1) {
+        // get weekday from date
+        let date = fromUnixTime(loadPage.data.forecast.daily[i].dt);
+        date = changeTimeZone(date, loadPage.data.forecast.timezone);
+        const dayName = format(date, 'eeee');
+        weekDay[i - 1].innerText = dayName;
+
+        loadPage.getIcon(loadPage.data.forecast.daily[i].weather[0].icon, icon[i - 1]);
+        loadPage.getTemp(loadPage.data.forecast.daily[i].temp.max, maxTemp[i - 1]);
+        loadPage.getTemp(loadPage.data.forecast.daily[i].temp.min, minTemp[i - 1]);
+        loadPage.getWind(loadPage.data.forecast.daily[i].wind_speed, wind[i - 1]);
+      }
+    },
+  },
+
 };
 
 export default { loadPage };

@@ -41,6 +41,15 @@ export const loadPage = {
     dummyElement.innerText = temp;
   },
 
+  getWind(windSpeed, element) {
+    const dummyElement = element;
+    if (loadPage.unitUsed === 'metric') {
+      dummyElement.innerText = `${Math.round((windSpeed) * 3.6)} km/h`;
+    } else if (loadPage.data.unit === 'imperial') {
+      dummyElement.innerText = `${Math.round(windSpeed)} mph`;
+    }
+  },
+
   placeDate: {
     init: () => {
       loadPage.placeDate.cacheDom();
@@ -115,7 +124,7 @@ export const loadPage = {
   dayDetails: {
     init: () => {
       loadPage.dayDetails.cacheDom();
-      loadPage.dayDetails.getWind();
+      loadPage.getWind(loadPage.data.forecast.current.wind_speed, loadPage.dayDetails.wind);
       loadPage.dayDetails.getHumidity();
       loadPage.dayDetails.getUvIndex();
       loadPage.dayDetails.getVisibility();
@@ -135,13 +144,6 @@ export const loadPage = {
       loadPage.dayDetails.sunrise = document.querySelector('#sunrise .dayData');
       loadPage.dayDetails.sunset = document.querySelector('#sunset .dayData');
       loadPage.dayDetails.pressure = document.querySelector('#pressure .dayData');
-    },
-    getWind() {
-      if (loadPage.unitUsed === 'metric') {
-        loadPage.dayDetails.wind.innerText = `${Math.round((loadPage.data.forecast.current.wind_speed) * 3.6)} km/h`;
-      } else if (loadPage.data.unit === 'imperial') {
-        loadPage.dayDetails.wind.innerText = `${Math.round(loadPage.data.forecast.current.wind_speed)} mph`;
-      }
     },
     getHumidity() {
       loadPage.dayDetails.humidity.innerText = `${loadPage.data.forecast.current.humidity}%`;

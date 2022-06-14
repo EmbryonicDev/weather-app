@@ -50,6 +50,32 @@ export const loadPage = {
     }
   },
 
+  getIcon(iconCode, element) {
+    // const iconCode = loadPage.data.forecast.current.weather[0].icon;
+    const dummyElement = element;
+    // const { weatherIcon } = loadPage.weatherNow;
+    if (iconCode === '01d') dummyElement.src = icon01d;
+    if (iconCode === '01n') dummyElement.src = icon01n;
+    if (iconCode === '02d') dummyElement.src = icon02d;
+    if (iconCode === '02n') dummyElement.src = icon02n;
+    if (iconCode === '02d') dummyElement.src = icon02d;
+    if (iconCode === '03n') dummyElement.src = icon03n;
+    if (iconCode === '03d') dummyElement.src = icon03d;
+    if (iconCode === '04n') dummyElement.src = icon04n;
+    if (iconCode === '04d') dummyElement.src = icon04d;
+    if (iconCode === '10n') dummyElement.src = icon10n;
+    if (iconCode === '10d') dummyElement.src = icon10d;
+    if (iconCode === '11n') dummyElement.src = icon11n;
+    if (iconCode === '11d') dummyElement.src = icon11d;
+    if (iconCode === '09n') dummyElement.src = icon09n;
+    if (iconCode === '09d') dummyElement.src = icon09d;
+    if (iconCode === '13n') dummyElement.src = icon13n;
+    if (iconCode === '13d') dummyElement.src = icon13d;
+    if (iconCode === '50n') dummyElement.src = icon50n;
+    if (iconCode === '50d') dummyElement.src = icon50d;
+    if (iconCode === '1232n') dummyElement.src = icon1232n;
+  },
+
   placeDate: {
     init: () => {
       loadPage.placeDate.cacheDom();
@@ -83,7 +109,10 @@ export const loadPage = {
       // get feels like temp
       loadPage.getTemp(loadPage.data.forecast.current.feels_like, loadPage.weatherNow.feelsLike);
       loadPage.weatherNow.getSky();
-      loadPage.weatherNow.getIcon();
+      loadPage.getIcon(
+        loadPage.data.forecast.current.weather[0].icon,
+        loadPage.weatherNow.weatherIcon,
+      );
     },
     cacheDom() {
       loadPage.weatherNow.temp = document.querySelector('#dayMain span');
@@ -94,30 +123,6 @@ export const loadPage = {
     getSky() {
       const sky = titleCase(loadPage.data.forecast.current.weather[0].description);
       loadPage.weatherNow.sky.innerText = sky;
-    },
-    getIcon() {
-      const iconCode = loadPage.data.forecast.current.weather[0].icon;
-      const { weatherIcon } = loadPage.weatherNow;
-      if (iconCode === '01d') weatherIcon.src = icon01d;
-      if (iconCode === '01n') weatherIcon.src = icon01n;
-      if (iconCode === '02d') weatherIcon.src = icon02d;
-      if (iconCode === '02n') weatherIcon.src = icon02n;
-      if (iconCode === '02d') weatherIcon.src = icon02d;
-      if (iconCode === '03n') weatherIcon.src = icon03n;
-      if (iconCode === '03d') weatherIcon.src = icon03d;
-      if (iconCode === '04n') weatherIcon.src = icon04n;
-      if (iconCode === '04d') weatherIcon.src = icon04d;
-      if (iconCode === '10n') weatherIcon.src = icon10n;
-      if (iconCode === '10d') weatherIcon.src = icon10d;
-      if (iconCode === '11n') weatherIcon.src = icon11n;
-      if (iconCode === '11d') weatherIcon.src = icon11d;
-      if (iconCode === '09n') weatherIcon.src = icon09n;
-      if (iconCode === '09d') weatherIcon.src = icon09d;
-      if (iconCode === '13n') weatherIcon.src = icon13n;
-      if (iconCode === '13d') weatherIcon.src = icon13d;
-      if (iconCode === '50n') weatherIcon.src = icon50n;
-      if (iconCode === '50d') weatherIcon.src = icon50d;
-      if (iconCode === '1232n') weatherIcon.src = icon1232n;
     },
   },
 

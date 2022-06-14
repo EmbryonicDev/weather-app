@@ -8715,10 +8715,11 @@ var loadPage = {
               loadPage.placeDate.init();
               loadPage.weatherNow.init();
               loadPage.dayDetails.init();
+              loadPage.weekly.init();
               console.log(loadPage.data);
               console.log(loadPage.data.forecast.current);
 
-            case 9:
+            case 10:
             case "end":
               return _context.stop();
           }
@@ -8732,6 +8733,43 @@ var loadPage = {
 
     return init;
   }(),
+  getTemp: function getTemp(temperature, element) {
+    var dummyElement = element;
+    var temp = (0,_functions__WEBPACK_IMPORTED_MODULE_0__.celOrFah)(temperature, loadPage.unitUsed);
+    dummyElement.innerText = temp;
+  },
+  getWind: function getWind(windSpeed, element) {
+    var dummyElement = element;
+
+    if (loadPage.unitUsed === 'metric') {
+      dummyElement.innerText = "".concat(Math.round(windSpeed * 3.6), " km/h");
+    } else if (loadPage.data.unit === 'imperial') {
+      dummyElement.innerText = "".concat(Math.round(windSpeed), " mph");
+    }
+  },
+  getIcon: function getIcon(iconCode, element) {
+    var dummyElement = element;
+    if (iconCode === '01d') dummyElement.src = _assets_icons_01d_svg__WEBPACK_IMPORTED_MODULE_2__;
+    if (iconCode === '01n') dummyElement.src = _assets_icons_01n_svg__WEBPACK_IMPORTED_MODULE_3__;
+    if (iconCode === '02d') dummyElement.src = _assets_icons_02d_svg__WEBPACK_IMPORTED_MODULE_4__;
+    if (iconCode === '02n') dummyElement.src = _assets_icons_02n_svg__WEBPACK_IMPORTED_MODULE_5__;
+    if (iconCode === '02d') dummyElement.src = _assets_icons_02d_svg__WEBPACK_IMPORTED_MODULE_4__;
+    if (iconCode === '03n') dummyElement.src = _assets_icons_03n_svg__WEBPACK_IMPORTED_MODULE_7__;
+    if (iconCode === '03d') dummyElement.src = _assets_icons_03d_svg__WEBPACK_IMPORTED_MODULE_6__;
+    if (iconCode === '04n') dummyElement.src = _assets_icons_04n_svg__WEBPACK_IMPORTED_MODULE_9__;
+    if (iconCode === '04d') dummyElement.src = _assets_icons_04d_svg__WEBPACK_IMPORTED_MODULE_8__;
+    if (iconCode === '10n') dummyElement.src = _assets_icons_10n_svg__WEBPACK_IMPORTED_MODULE_13__;
+    if (iconCode === '10d') dummyElement.src = _assets_icons_10d_svg__WEBPACK_IMPORTED_MODULE_12__;
+    if (iconCode === '11n') dummyElement.src = _assets_icons_11n_svg__WEBPACK_IMPORTED_MODULE_15__;
+    if (iconCode === '11d') dummyElement.src = _assets_icons_11d_svg__WEBPACK_IMPORTED_MODULE_14__;
+    if (iconCode === '09n') dummyElement.src = _assets_icons_09n_svg__WEBPACK_IMPORTED_MODULE_11__;
+    if (iconCode === '09d') dummyElement.src = _assets_icons_09d_svg__WEBPACK_IMPORTED_MODULE_10__;
+    if (iconCode === '13n') dummyElement.src = _assets_icons_13n_svg__WEBPACK_IMPORTED_MODULE_17__;
+    if (iconCode === '13d') dummyElement.src = _assets_icons_13d_svg__WEBPACK_IMPORTED_MODULE_16__;
+    if (iconCode === '50n') dummyElement.src = _assets_icons_50n_svg__WEBPACK_IMPORTED_MODULE_19__;
+    if (iconCode === '50d') dummyElement.src = _assets_icons_50d_svg__WEBPACK_IMPORTED_MODULE_18__;
+    if (iconCode === '1232n') dummyElement.src = _assets_icons_1232n_svg__WEBPACK_IMPORTED_MODULE_20__;
+  },
   placeDate: {
     init: function init() {
       loadPage.placeDate.cacheDom();
@@ -8758,11 +8796,13 @@ var loadPage = {
   },
   weatherNow: {
     init: function init() {
-      loadPage.weatherNow.cacheDom();
-      loadPage.weatherNow.getTemp();
+      loadPage.weatherNow.cacheDom(); // get current temp
+
+      loadPage.getTemp(loadPage.data.forecast.current.temp, loadPage.weatherNow.temp); // get feels like temp
+
+      loadPage.getTemp(loadPage.data.forecast.current.feels_like, loadPage.weatherNow.feelsLike);
       loadPage.weatherNow.getSky();
-      loadPage.weatherNow.getIcon();
-      loadPage.weatherNow.getFeelsLike();
+      loadPage.getIcon(loadPage.data.forecast.current.weather[0].icon, loadPage.weatherNow.weatherIcon);
     },
     cacheDom: function cacheDom() {
       loadPage.weatherNow.temp = document.querySelector('#dayMain span');
@@ -8770,47 +8810,15 @@ var loadPage = {
       loadPage.weatherNow.weatherIcon = document.querySelector('#dayMain > p > img');
       loadPage.weatherNow.feelsLike = document.querySelector('#feelsLike span');
     },
-    getTemp: function getTemp() {
-      var temp = (0,_functions__WEBPACK_IMPORTED_MODULE_0__.celOrFah)(loadPage.data.forecast.current.temp, loadPage.unitUsed);
-      loadPage.weatherNow.temp.innerText = temp;
-    },
     getSky: function getSky() {
       var sky = (0,_functions__WEBPACK_IMPORTED_MODULE_0__.titleCase)(loadPage.data.forecast.current.weather[0].description);
       loadPage.weatherNow.sky.innerText = sky;
-    },
-    getIcon: function getIcon() {
-      var iconCode = loadPage.data.forecast.current.weather[0].icon;
-      var weatherIcon = loadPage.weatherNow.weatherIcon;
-      if (iconCode === '01d') weatherIcon.src = _assets_icons_01d_svg__WEBPACK_IMPORTED_MODULE_2__;
-      if (iconCode === '01n') weatherIcon.src = _assets_icons_01n_svg__WEBPACK_IMPORTED_MODULE_3__;
-      if (iconCode === '02d') weatherIcon.src = _assets_icons_02d_svg__WEBPACK_IMPORTED_MODULE_4__;
-      if (iconCode === '02n') weatherIcon.src = _assets_icons_02n_svg__WEBPACK_IMPORTED_MODULE_5__;
-      if (iconCode === '02d') weatherIcon.src = _assets_icons_02d_svg__WEBPACK_IMPORTED_MODULE_4__;
-      if (iconCode === '03n') weatherIcon.src = _assets_icons_03n_svg__WEBPACK_IMPORTED_MODULE_7__;
-      if (iconCode === '03d') weatherIcon.src = _assets_icons_03d_svg__WEBPACK_IMPORTED_MODULE_6__;
-      if (iconCode === '04n') weatherIcon.src = _assets_icons_04n_svg__WEBPACK_IMPORTED_MODULE_9__;
-      if (iconCode === '04d') weatherIcon.src = _assets_icons_04d_svg__WEBPACK_IMPORTED_MODULE_8__;
-      if (iconCode === '10n') weatherIcon.src = _assets_icons_10n_svg__WEBPACK_IMPORTED_MODULE_13__;
-      if (iconCode === '10d') weatherIcon.src = _assets_icons_10d_svg__WEBPACK_IMPORTED_MODULE_12__;
-      if (iconCode === '11n') weatherIcon.src = _assets_icons_11n_svg__WEBPACK_IMPORTED_MODULE_15__;
-      if (iconCode === '11d') weatherIcon.src = _assets_icons_11d_svg__WEBPACK_IMPORTED_MODULE_14__;
-      if (iconCode === '09n') weatherIcon.src = _assets_icons_09n_svg__WEBPACK_IMPORTED_MODULE_11__;
-      if (iconCode === '09d') weatherIcon.src = _assets_icons_09d_svg__WEBPACK_IMPORTED_MODULE_10__;
-      if (iconCode === '13n') weatherIcon.src = _assets_icons_13n_svg__WEBPACK_IMPORTED_MODULE_17__;
-      if (iconCode === '13d') weatherIcon.src = _assets_icons_13d_svg__WEBPACK_IMPORTED_MODULE_16__;
-      if (iconCode === '50n') weatherIcon.src = _assets_icons_50n_svg__WEBPACK_IMPORTED_MODULE_19__;
-      if (iconCode === '50d') weatherIcon.src = _assets_icons_50d_svg__WEBPACK_IMPORTED_MODULE_18__;
-      if (iconCode === '1232n') weatherIcon.src = _assets_icons_1232n_svg__WEBPACK_IMPORTED_MODULE_20__;
-    },
-    getFeelsLike: function getFeelsLike() {
-      var temp = (0,_functions__WEBPACK_IMPORTED_MODULE_0__.celOrFah)(loadPage.data.forecast.current.feels_like, loadPage.unitUsed);
-      loadPage.weatherNow.feelsLike.innerText = temp;
     }
   },
   dayDetails: {
     init: function init() {
       loadPage.dayDetails.cacheDom();
-      loadPage.dayDetails.getWind();
+      loadPage.getWind(loadPage.data.forecast.current.wind_speed, loadPage.dayDetails.wind);
       loadPage.dayDetails.getHumidity();
       loadPage.dayDetails.getUvIndex();
       loadPage.dayDetails.getVisibility();
@@ -8830,13 +8838,6 @@ var loadPage = {
       loadPage.dayDetails.sunrise = document.querySelector('#sunrise .dayData');
       loadPage.dayDetails.sunset = document.querySelector('#sunset .dayData');
       loadPage.dayDetails.pressure = document.querySelector('#pressure .dayData');
-    },
-    getWind: function getWind() {
-      if (loadPage.unitUsed === 'metric') {
-        loadPage.dayDetails.wind.innerText = "".concat(Math.round(loadPage.data.forecast.current.wind_speed * 3.6), " km/h");
-      } else if (loadPage.data.unit === 'imperial') {
-        loadPage.dayDetails.wind.innerText = "".concat(Math.round(loadPage.data.forecast.current.wind_speed), " mph");
-      }
     },
     getHumidity: function getHumidity() {
       loadPage.dayDetails.humidity.innerText = "".concat(loadPage.data.forecast.current.humidity, "%");
@@ -8869,6 +8870,30 @@ var loadPage = {
     },
     getPressure: function getPressure() {
       loadPage.dayDetails.pressure.innerText = "".concat(loadPage.data.forecast.current.pressure, " hPa");
+    }
+  },
+  weekly: {
+    init: function init() {
+      loadPage.weekly.getWeekForecast();
+    },
+    getWeekForecast: function getWeekForecast() {
+      var weekDay = document.querySelectorAll('.day');
+      var icon = document.querySelectorAll('.dayIcon');
+      var maxTemp = document.querySelectorAll('.dayMax');
+      var minTemp = document.querySelectorAll('.dayMin');
+      var wind = document.querySelectorAll('.dayWind');
+
+      for (var i = 1; i < 8; i += 1) {
+        // get weekday from date
+        var date = (0,date_fns__WEBPACK_IMPORTED_MODULE_22__["default"])(loadPage.data.forecast.daily[i].dt);
+        date = (0,_functions__WEBPACK_IMPORTED_MODULE_0__.changeTimeZone)(date, loadPage.data.forecast.timezone);
+        var dayName = (0,date_fns__WEBPACK_IMPORTED_MODULE_21__["default"])(date, 'eeee');
+        weekDay[i - 1].innerText = dayName;
+        loadPage.getIcon(loadPage.data.forecast.daily[i].weather[0].icon, icon[i - 1]);
+        loadPage.getTemp(loadPage.data.forecast.daily[i].temp.max, maxTemp[i - 1]);
+        loadPage.getTemp(loadPage.data.forecast.daily[i].temp.min, minTemp[i - 1]);
+        loadPage.getWind(loadPage.data.forecast.daily[i].wind_speed, wind[i - 1]);
+      }
     }
   }
 };
@@ -12612,7 +12637,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_noSourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ":root {\n  --tempBorder: solid black;\n}\n\nbody {\n  height: 100vh;\n  width: 100vw;\n  display: flex;\n  flex-direction: column;\n}\n\n#header {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  border: var(--tempBorder);\n}\n\n#title {\n  display: flex;\n  gap: 12px;\n  padding-left: 16px;\n}\n\nform p {\n  display: flex;\n}\n\n#unitBtns {\n  padding-right: 16px;\n}\n\n#dayForecast {\n  margin-top: 24px;\n  width: max-content;\n  justify-self: center;\n  align-self: center;\n  display: grid;\n  border: var(--tempBorder);\n}\n\n#cityDate {\n  grid-column: 1 / span 4;\n  width: 100%;\n  border: var(--tempBorder);\n  text-align: center;\n}\n\n#dayMain {\n  grid-column: 1 / span 2;\n}\n\n/* Current weather icon */\n#dayMain > p > img {\n  height: 80px;\n}\n\n#dayDetails {\n  display: grid;\n  grid-template: repeat(3, 1fr) / repeat(3, 1fr);\n  border: var(--tempBorder);\n}\n\n#dayDetails div {\n  border: var(--tempBorder);\n}\n\n#weekForecast {  \ndisplay: grid;\nalign-self: center;\n}\n\n.weekDay {\n  display: flex;\n  gap: 16px;\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ":root {\n  --tempBorder: solid black;\n}\n\nbody {\n  height: 100vh;\n  width: 100vw;\n  display: flex;\n  flex-direction: column;\n}\n\n#header {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  border: var(--tempBorder);\n}\n\n#title {\n  display: flex;\n  gap: 12px;\n  padding-left: 16px;\n}\n\nform p {\n  display: flex;\n}\n\n#unitBtns {\n  padding-right: 16px;\n}\n\n#dayForecast {\n  margin-top: 24px;\n  width: max-content;\n  justify-self: center;\n  align-self: center;\n  display: grid;\n  border: var(--tempBorder);\n}\n\n#cityDate {\n  grid-column: 1 / span 4;\n  width: 100%;\n  border: var(--tempBorder);\n  text-align: center;\n}\n\n#dayMain {\n  grid-column: 1 / span 2;\n}\n\n/* Current weather icon */\n#dayMain>p>img {\n  height: 80px;\n}\n\n#dayDetails {\n  display: grid;\n  grid-template: repeat(3, 1fr) / repeat(3, 1fr);\n  border: var(--tempBorder);\n}\n\n#dayDetails div {\n  border: var(--tempBorder);\n}\n\n#weekForecast {\n  display: grid;\n  grid-template: repeat(5, 1fr) / 1;\n  align-self: center;\n}\n\n#weekForecast H3 {\n  grid-column: 1;\n  justify-self: center;\n}\n\n.weekDay {\n  display: grid;\n  /* grid-template-columns: 2fr 0.7fr 1fr 1fr 1fr; */\n  grid-template-columns: 2fr repeat(4, max-content);\n  grid-auto-flow: column;\n  gap: 16px;\n  border: var(--tempBorder);\n}\n\n.dayIcon {\n  height: 24px;\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

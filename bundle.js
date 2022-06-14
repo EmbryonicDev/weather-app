@@ -8762,11 +8762,13 @@ var loadPage = {
       loadPage.weatherNow.getTemp();
       loadPage.weatherNow.getSky();
       loadPage.weatherNow.getIcon();
+      loadPage.weatherNow.getFeelsLike();
     },
     cacheDom: function cacheDom() {
       loadPage.weatherNow.temp = document.querySelector('#dayMain span');
       loadPage.weatherNow.sky = document.querySelector('#daySky');
       loadPage.weatherNow.weatherIcon = document.querySelector('#dayMain > p > img');
+      loadPage.weatherNow.feelsLike = document.querySelector('#feelsLike span');
     },
     getTemp: function getTemp() {
       var temp = (0,_functions__WEBPACK_IMPORTED_MODULE_0__.celOrFah)(loadPage.data.forecast.current.temp, loadPage.unitUsed);
@@ -8799,6 +8801,10 @@ var loadPage = {
       if (iconCode === '50n') weatherIcon.src = _assets_icons_50n_svg__WEBPACK_IMPORTED_MODULE_19__;
       if (iconCode === '50d') weatherIcon.src = _assets_icons_50d_svg__WEBPACK_IMPORTED_MODULE_18__;
       if (iconCode === '1232n') weatherIcon.src = _assets_icons_1232n_svg__WEBPACK_IMPORTED_MODULE_20__;
+    },
+    getFeelsLike: function getFeelsLike() {
+      var temp = (0,_functions__WEBPACK_IMPORTED_MODULE_0__.celOrFah)(loadPage.data.forecast.current.feels_like, loadPage.unitUsed);
+      loadPage.weatherNow.feelsLike.innerText = temp;
     }
   },
   dayDetails: {

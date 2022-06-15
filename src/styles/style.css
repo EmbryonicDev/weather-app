@@ -87,7 +87,6 @@ form img {
 }
 
 #dayForecast {
-  margin-top: 24px;
   width: max-content;
   justify-self: center;
   align-self: center;
@@ -128,6 +127,15 @@ form img {
   font-size: 1.8rem;
 }
 
+#dayDetails {
+  display: grid;
+  grid-template: repeat(3, 1fr) / repeat(3, 1fr);
+  align-items: center;
+  text-align: center;
+  row-gap: 9px;
+  margin-left: 15px;
+}
+
 #dayDetails p:first-of-type {
   margin: 3px;
   color: #525252;
@@ -141,13 +149,6 @@ form img {
 #feelsLike {
   color: #525252;
   margin: 0;
-}
-
-#dayDetails {
-  display: grid;
-  grid-template: repeat(3, 1fr) / repeat(3, 1fr);
-  align-items: center;
-  text-align: center;
 }
 
 .dayData {

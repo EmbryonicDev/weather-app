@@ -22,8 +22,20 @@ body {
   padding-left: 16px;
 }
 
+form {
+  display: flex;
+  flex-direction: column;
+}
+
 form p {
   display: flex;
+  margin-bottom: 0;
+}
+
+#error {
+  margin: 0;
+  align-self: center;
+  margin-top: 6px;
 }
 
 #unitBtns {

@@ -49,10 +49,9 @@ export const userInput = {
     this.form.addEventListener('submit', this.submitCity.bind());
   },
   storeInput() {
-    if (storedCity[0]) storedCity.pop();
-    storedCity.push(userInput.input.value);
+    while (storedCity[0]) storedCity.pop();
+    if (String(userInput.input.value.length).trim() > 0) storedCity.push(userInput.input.value);
     localStorage.setItem('storedCity', JSON.stringify(storedCity));
-    console.log(storedCity);
   },
   submitCity(e) {
     e.preventDefault();
@@ -61,6 +60,7 @@ export const userInput = {
     } else {
       loadPage.init(storedCity[0]);
     }
+    userInput.input.value = '';
   },
 };
 

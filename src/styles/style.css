@@ -16,20 +16,50 @@ body {
   border: var(--tempBorder);
 }
 
+#mainIcon {
+  height: 3rem;
+  align-self: center;
+}
+
 #title {
   display: flex;
-  gap: 12px;
+  gap: 6px;
   padding-left: 16px;
 }
 
 form {
   display: flex;
   flex-direction: column;
+  align-self: flex-end;
+}
+
+input {
+  border-radius: 24px;
+  border: dotted transparent;
+  background: rgb(137, 243, 197);
+  padding: 9px;
+}
+
+input:hover {
+  border: dotted black
 }
 
 form p {
   display: flex;
   margin-bottom: 0;
+}
+
+form button {
+  background: none;
+  border: none;
+}
+
+form button:hover {
+  cursor: pointer;
+}
+
+form img {
+  height: 2rem;
 }
 
 #error {
@@ -40,6 +70,20 @@ form p {
 
 #unitBtns {
   padding-right: 16px;
+}
+
+.unitBtn {
+  border-radius: 12px;
+  border: none;
+  padding: 6px;
+  background: rgb(58, 52, 227);
+  color: white;
+  font-weight: 600;
+}
+
+.unitBtn:hover {
+  cursor: pointer;
+  transform: scale(1.1);
 }
 
 #dayForecast {

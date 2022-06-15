@@ -3,6 +3,7 @@ body {
   width: 100vw;
   display: flex;
   flex-direction: column;
+  background: #67e8f9;
 }
 
 #header {

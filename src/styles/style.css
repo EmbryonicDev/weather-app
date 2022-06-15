@@ -163,13 +163,17 @@ table {
   align-self: center;
   border-collapse: collapse;
   letter-spacing: 1px;
-  font-size: 0.8rem;
   width: max-content;
+}
+
+table h2 {
+  font-size: 24px;
+  margin: 6px;
 }
 
 td,
 th {
   border-bottom: 1px solid rgb(190, 190, 190);
-  padding: 12px 15px;
+  padding: 9px 9px;
   text-align: center;
 }

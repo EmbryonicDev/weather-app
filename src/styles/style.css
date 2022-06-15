@@ -93,12 +93,10 @@ form img {
   align-self: center;
   display: grid;
   font-weight: 600;
-  border: var(--tempBorder);
 }
 
 #cityDate {
   grid-column: 1 / span 4;
-  border: var(--tempBorder);
   text-align: center;
   margin: 16px;
 }
@@ -117,10 +115,32 @@ form img {
   height: 80px;
 }
 
+/* Icon & current temp div */
+#dayMain p:first-of-type {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+}
+
+/* Current temp */
+#dayMain>p>img+span {
+  font-size: 1.8rem;
+}
+
 #dayDetails p:first-of-type {
   margin: 3px;
   color: #525252;
   font-size: 0.8rem;
+}
+
+#daySky {
+  margin: 0 0 6px 0;
+}
+
+#feelsLike {
+  color: #525252;
+  margin: 0;
 }
 
 #dayDetails {

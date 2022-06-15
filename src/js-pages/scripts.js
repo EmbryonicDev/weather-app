@@ -31,9 +31,6 @@ export const loadPage = {
     loadPage.weatherNow.init();
     loadPage.dayDetails.init();
     loadPage.weekly.init();
-
-    console.log(loadPage.data);
-    console.log(loadPage.data.forecast.current);
   },
 
   getTemp(temperature, element) {

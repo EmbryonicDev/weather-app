@@ -77,25 +77,21 @@ form p {
   border: var(--tempBorder);
 }
 
-#weekForecast {
-  display: grid;
-  grid-template: repeat(5, 1fr) / 1;
-  align-self: center;
-}
-
-#weekForecast H3 {
-  grid-column: 1;
-  justify-self: center;
-}
-
-.weekDay {
-  display: grid;
-  grid-template-columns: 2fr repeat(4, max-content);
-  grid-auto-flow: column;
-  gap: 16px;
-  border: var(--tempBorder);
-}
-
 .dayIcon {
   height: 24px;
+}
+
+table {
+  align-self: center;
+  border-collapse: collapse;
+  letter-spacing: 1px;
+  font-size: 0.8rem;
+  width: max-content;
+}
+
+td,
+th {
+  border-bottom: 1px solid rgb(190, 190, 190);
+  padding: 12px 15px;
+  text-align: center;
 }

@@ -12650,7 +12650,8 @@ ___CSS_LOADER_EXPORT___.push([module.id, ":root {\n  --tempBorder: solid black;\
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__),
-/* harmony export */   "toggleCelFah": () => (/* binding */ toggleCelFah)
+/* harmony export */   "toggleCelFah": () => (/* binding */ toggleCelFah),
+/* harmony export */   "userInput": () => (/* binding */ userInput)
 /* harmony export */ });
 /* harmony import */ var _scripts__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(308);
 
@@ -12670,8 +12671,31 @@ var toggleCelFah = {
     fahBtn.addEventListener('click', _scripts__WEBPACK_IMPORTED_MODULE_0__.loadPage.init.bind(_scripts__WEBPACK_IMPORTED_MODULE_0__.loadPage.init.bind, this.city[0], 'imperial'));
   }
 };
+var userInput = {
+  searchCity: null,
+  init: function init() {
+    this.cacheDom();
+    this.bindEvents();
+  },
+  cacheDom: function cacheDom() {
+    this.input = document.querySelector('input');
+    this.form = document.querySelector('form');
+  },
+  bindEvents: function bindEvents() {
+    this.input.addEventListener('input', this.getInput.bind());
+    this.form.addEventListener('submit', this.submitCity.bind());
+  },
+  getInput: function getInput() {
+    userInput.searchCity = userInput.input.value;
+  },
+  submitCity: function submitCity(e) {
+    e.preventDefault();
+    _scripts__WEBPACK_IMPORTED_MODULE_0__.loadPage.init(userInput.searchCity);
+  }
+};
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  toggleCelFah: toggleCelFah
+  toggleCelFah: toggleCelFah,
+  userInput: userInput
 });
 
 /***/ })
@@ -12831,8 +12855,9 @@ _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
 
         case 2:
           _js_pages_dom__WEBPACK_IMPORTED_MODULE_0__.toggleCelFah.init();
+          _js_pages_dom__WEBPACK_IMPORTED_MODULE_0__.userInput.init();
 
-        case 3:
+        case 4:
         case "end":
           return _context.stop();
       }

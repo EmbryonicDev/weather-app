@@ -1,0 +1,8 @@
+add class / color to selected  °C / °F button
+  if(doc.getElementByClass( °C /  °F)) then return new search location with same unitBtn
+
+add message for incorrect city
+
+add JSON to remember new location
+
+add loading animation

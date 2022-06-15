@@ -6,3 +6,5 @@ add message for incorrect city
 add JSON to remember new location
 
 add loading animation
+
+last 5 locations -> recent searches

@@ -87,19 +87,22 @@ form img {
 }
 
 #dayForecast {
-  margin-top: 24px;
   width: max-content;
   justify-self: center;
   align-self: center;
   display: grid;
-  border: var(--tempBorder);
+  font-weight: 600;
 }
 
 #cityDate {
   grid-column: 1 / span 4;
-  width: 100%;
-  border: var(--tempBorder);
   text-align: center;
+  margin: 16px;
+}
+
+#cityDate h2,
+#cityDate h4 {
+  margin: 0;
 }
 
 #dayMain {
@@ -111,14 +114,45 @@ form img {
   height: 80px;
 }
 
+/* Icon & current temp div */
+#dayMain p:first-of-type {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+}
+
+/* Current temp */
+#dayMain>p>img+span {
+  font-size: 1.8rem;
+}
+
 #dayDetails {
   display: grid;
   grid-template: repeat(3, 1fr) / repeat(3, 1fr);
-  border: var(--tempBorder);
+  align-items: center;
+  text-align: center;
+  row-gap: 9px;
+  margin-left: 15px;
 }
 
-#dayDetails div {
-  border: var(--tempBorder);
+#dayDetails p:first-of-type {
+  margin: 3px;
+  color: #525252;
+  font-size: 0.8rem;
+}
+
+#daySky {
+  margin: 0 0 6px 0;
+}
+
+#feelsLike {
+  color: #525252;
+  margin: 0;
+}
+
+.dayData {
+  margin: 3px;
 }
 
 .dayIcon {

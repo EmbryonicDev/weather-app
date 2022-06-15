@@ -9120,7 +9120,7 @@ var getData = /*#__PURE__*/function () {
 
           case 22:
             forecast = _context.sent;
-            errorMsg.style.cssText = 'color: transparent';
+            errorMsg.style.cssText = 'color: transparent; font-weight: bold; align-self: flex-start; background: transparent; padding: 3px; border-radius: 6px';
             return _context.abrupt("return", {
               city: city,
               countryCode: countryCode,
@@ -9131,7 +9131,7 @@ var getData = /*#__PURE__*/function () {
           case 27:
             _context.prev = 27;
             _context.t0 = _context["catch"](5);
-            errorMsg.style.cssText = 'color: red';
+            errorMsg.style.cssText = 'color: green; font-weight: bold; align-self: flex-start; background: red; padding: 3px; border-radius: 6px';
 
             while (_dom__WEBPACK_IMPORTED_MODULE_0__.storedCity.length > 0) {
               _dom__WEBPACK_IMPORTED_MODULE_0__.storedCity.pop();

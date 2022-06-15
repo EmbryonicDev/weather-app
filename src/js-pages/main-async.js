@@ -19,12 +19,12 @@ export const getData = async (location = 'Amsterdam', unit = 'metric') => {
     const response2 = await fetch(url2, { mode: 'cors' });
     const forecast = await response2.json();
 
-    errorMsg.style.cssText = 'color: transparent';
+    errorMsg.style.cssText = 'color: transparent; font-weight: bold; align-self: flex-start; background: transparent; padding: 3px; border-radius: 6px';
     return {
       city, countryCode, unit, forecast,
     };
   } catch (err) {
-    errorMsg.style.cssText = 'color: red';
+    errorMsg.style.cssText = 'color: green; font-weight: bold; align-self: flex-start; background: red; padding: 3px; border-radius: 6px';
     while (storedCity.length > 0) storedCity.pop();
     localStorage.setItem('storedCity', JSON.stringify(storedCity));
     console.error('City Not Found');

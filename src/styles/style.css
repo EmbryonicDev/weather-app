@@ -1,7 +1,3 @@
-:root {
-  --tempBorder: solid black;
-}
-
 body {
   height: 100vh;
   width: 100vw;
@@ -13,7 +9,6 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border: var(--tempBorder);
 }
 
 #mainIcon {

@@ -18,4 +18,27 @@ export const toggleCelFah = {
   },
 };
 
-export default { toggleCelFah };
+export const userInput = {
+  searchCity: null,
+  init() {
+    this.cacheDom();
+    this.bindEvents();
+  },
+  cacheDom() {
+    this.input = document.querySelector('input');
+    this.form = document.querySelector('form');
+  },
+  bindEvents() {
+    this.input.addEventListener('input', this.getInput.bind());
+    this.form.addEventListener('submit', this.submitCity.bind());
+  },
+  getInput() {
+    userInput.searchCity = userInput.input.value;
+  },
+  submitCity(e) {
+    e.preventDefault();
+    loadPage.init(userInput.searchCity);
+  },
+};
+
+export default { toggleCelFah, userInput };

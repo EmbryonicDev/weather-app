@@ -1,5 +1,6 @@
 import { loadPage } from './scripts';
 
+export const storedCity = JSON.parse(localStorage.getItem('storedCity')) || [];
 export const storedUnit = JSON.parse(localStorage.getItem('storedUnit')) || [];
 
 export const toggleCelFah = {
@@ -44,15 +45,22 @@ export const userInput = {
     this.form = document.querySelector('form');
   },
   bindEvents() {
-    this.input.addEventListener('input', this.getInput.bind());
+    this.input.addEventListener('input', this.storeInput.bind());
     this.form.addEventListener('submit', this.submitCity.bind());
   },
-  getInput() {
-    userInput.searchCity = userInput.input.value;
+  storeInput() {
+    if (storedCity[0]) storedCity.pop();
+    storedCity.push(userInput.input.value);
+    localStorage.setItem('storedCity', JSON.stringify(storedCity));
+    console.log(storedCity);
   },
   submitCity(e) {
     e.preventDefault();
-    loadPage.init(userInput.searchCity);
+    if (storedUnit[0]) {
+      loadPage.init(storedCity[0], storedUnit[0]);
+    } else {
+      loadPage.init(storedCity[0]);
+    }
   },
 };
 

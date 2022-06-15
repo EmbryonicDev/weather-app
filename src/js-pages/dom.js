@@ -20,17 +20,23 @@ export const toggleCelFah = {
       this.storeUnit('metric');
       this.cacheDom(); // get new city name after user input
       loadPage.init(this.city[0], 'metric');
+      this.formatBtn(celBtn, fahBtn);
     });
     fahBtn.addEventListener('click', () => {
       this.storeUnit('imperial');
       this.cacheDom(); // get new city name after user input
       loadPage.init(this.city[0], 'imperial');
+      this.formatBtn(fahBtn, celBtn);
     });
   },
   storeUnit(selectedUnit) {
     if (storedUnit[0]) storedUnit.pop();
     storedUnit.push(selectedUnit);
     localStorage.setItem('storedUnit', JSON.stringify(storedUnit));
+  },
+  formatBtn(buttonOn, buttonOff) {
+    buttonOn.classList.add('selectedBtn');
+    buttonOff.classList.remove('selectedBtn');
   },
 };
 

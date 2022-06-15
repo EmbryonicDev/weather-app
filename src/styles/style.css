@@ -157,7 +157,7 @@ form img {
 }
 
 .dayIcon {
-  height: 24px;
+  height: 36px;
 }
 
 table {
@@ -177,4 +177,5 @@ th {
   border-bottom: 1.5px solid yellow;
   padding: 9px 9px;
   text-align: center;
+  font-weight: bold;
 }

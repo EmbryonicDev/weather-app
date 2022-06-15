@@ -97,9 +97,14 @@ form img {
 
 #cityDate {
   grid-column: 1 / span 4;
-  width: 100%;
   border: var(--tempBorder);
   text-align: center;
+  margin: 16px;
+}
+
+#cityDate h2,
+#cityDate h4 {
+  margin: 0;
 }
 
 #dayMain {

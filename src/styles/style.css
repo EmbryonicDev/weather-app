@@ -90,7 +90,6 @@ form p {
 
 .weekDay {
   display: grid;
-  /* grid-template-columns: 2fr 0.7fr 1fr 1fr 1fr; */
   grid-template-columns: 2fr repeat(4, max-content);
   grid-auto-flow: column;
   gap: 16px;

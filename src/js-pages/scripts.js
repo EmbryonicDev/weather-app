@@ -27,10 +27,22 @@ export const loadPage = {
   init: async (city, unit) => {
     loadPage.data = await getData(city, unit);
     loadPage.unitUsed = loadPage.data.unit;
+    loadPage.formatBtn();
     loadPage.placeDate.init();
     loadPage.weatherNow.init();
     loadPage.dayDetails.init();
     loadPage.weekly.init();
+  },
+
+  formatBtn() {
+    const unitBtn = document.querySelectorAll('.unitBtn');
+    const celBtn = unitBtn[0];
+    const fahBtn = unitBtn[1];
+
+    if (loadPage.unitUsed === 'imperial') {
+      fahBtn.classList.add('selectedBtn');
+      celBtn.classList.remove('selectedBtn');
+    }
   },
 
   getTemp(temperature, element) {

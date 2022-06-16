@@ -1,7 +1,7 @@
 import {
   userInput, toggleCelFah, storedCity, storedUnit,
 } from './js-pages/dom';
-import { loadPage } from './js-pages/scripts';
+import { loadPage, setStaticIcons } from './js-pages/scripts';
 import './styles/modern-normalize.css';
 import './styles/style.css';
 
@@ -14,6 +14,7 @@ import './styles/style.css';
   } else {
     await loadPage.init();
   }
+  setStaticIcons();
   toggleCelFah.init();
   userInput.init();
 })();

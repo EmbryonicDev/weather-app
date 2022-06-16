@@ -8893,10 +8893,10 @@ var loadPage = {
       dummyElement.innerText = "".concat(Math.round(windSpeed), " mph");
     }
   },
-  getTime: function getTime(time, timeZone) {
+  getTime: function getTime(time, timeZone, dateFormat) {
     var date = (0,date_fns__WEBPACK_IMPORTED_MODULE_20__["default"])(time);
     date = loadPage.changeTimeZone(date, timeZone);
-    return (0,date_fns__WEBPACK_IMPORTED_MODULE_21__["default"])(date, 'H:mm');
+    return (0,date_fns__WEBPACK_IMPORTED_MODULE_21__["default"])(date, dateFormat);
   },
   getIcon: function getIcon(iconCode, element) {
     var dummyElement = element;
@@ -9007,11 +9007,11 @@ var loadPage = {
     },
     getSunrise: function getSunrise() {
       var sunrise = document.querySelector('#sunrise .dayData');
-      sunrise.innerText = loadPage.getTime(loadPage.data.forecast.current.sunrise, loadPage.data.forecast.timezone);
+      sunrise.innerText = loadPage.getTime(loadPage.data.forecast.current.sunrise, loadPage.data.forecast.timezone, 'H:mm');
     },
     getSunset: function getSunset() {
       var sunset = document.querySelector('#sunset .dayData');
-      sunset.innerText = loadPage.getTime(loadPage.data.forecast.current.sunset, loadPage.data.forecast.timezone);
+      sunset.innerText = loadPage.getTime(loadPage.data.forecast.current.sunset, loadPage.data.forecast.timezone, 'H:mm');
     },
     getPressure: function getPressure() {
       var pressure = document.querySelector('#pressure .dayData');

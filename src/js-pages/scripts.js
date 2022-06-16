@@ -98,10 +98,10 @@ export const loadPage = {
     }
   },
 
-  getTime(time, timeZone) {
+  getTime(time, timeZone, dateFormat) {
     let date = fromUnixTime(time);
     date = loadPage.changeTimeZone(date, timeZone);
-    return format(date, 'H:mm');
+    return format(date, dateFormat);
   },
 
   getIcon(iconCode, element) {
@@ -228,6 +228,7 @@ export const loadPage = {
       sunrise.innerText = loadPage.getTime(
         loadPage.data.forecast.current.sunrise,
         loadPage.data.forecast.timezone,
+        'H:mm',
       );
     },
     getSunset() {
@@ -235,6 +236,7 @@ export const loadPage = {
       sunset.innerText = loadPage.getTime(
         loadPage.data.forecast.current.sunset,
         loadPage.data.forecast.timezone,
+        'H:mm',
       );
     },
     getPressure() {

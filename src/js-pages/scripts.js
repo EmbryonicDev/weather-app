@@ -86,12 +86,12 @@ export const loadPage = {
 
   placeDate: {
     init: () => {
-      loadPage.placeDate.cacheDom();
+      loadPage.placeDate.sharedDomEl();
       loadPage.placeDate.getCity();
       loadPage.placeDate.getCountry();
       loadPage.placeDate.getDate();
     },
-    cacheDom() {
+    sharedDomEl() {
       loadPage.placeDate.cityName = document.querySelector('#cityDate h2');
       loadPage.placeDate.date = document.querySelector('#cityDate h4');
     },
@@ -111,7 +111,7 @@ export const loadPage = {
 
   weatherNow: {
     init: () => {
-      loadPage.weatherNow.cacheDom();
+      loadPage.weatherNow.sharedDomEl();
       // get current temp
       loadPage.getTemp(loadPage.data.forecast.current.temp, loadPage.weatherNow.temp);
       // get feels like temp
@@ -122,7 +122,7 @@ export const loadPage = {
         loadPage.weatherNow.weatherIcon,
       );
     },
-    cacheDom() {
+    sharedDomEl() {
       loadPage.weatherNow.temp = document.querySelector('#dayMain span');
       loadPage.weatherNow.sky = document.querySelector('#daySky');
       loadPage.weatherNow.weatherIcon = document.querySelector('#dayMain > p > img');
@@ -136,7 +136,7 @@ export const loadPage = {
 
   dayDetails: {
     init: () => {
-      loadPage.dayDetails.cacheDom();
+      loadPage.dayDetails.sharedDomEl();
       loadPage.getWind(loadPage.data.forecast.current.wind_speed, loadPage.dayDetails.wind);
       loadPage.dayDetails.getHumidity();
       loadPage.dayDetails.getUvIndex();
@@ -147,7 +147,7 @@ export const loadPage = {
       loadPage.dayDetails.getSunset();
       loadPage.dayDetails.getPressure();
     },
-    cacheDom() {
+    sharedDomEl() {
       loadPage.dayDetails.wind = document.querySelector('#wind .dayData');
       loadPage.dayDetails.humidity = document.querySelector('#humidity .dayData');
       loadPage.dayDetails.uvIndex = document.querySelector('#uv .dayData');

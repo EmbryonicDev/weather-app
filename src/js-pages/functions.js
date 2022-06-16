@@ -24,13 +24,6 @@ export const getDistance = (distanceInMeters, unit) => {
   return returnValue;
 };
 
-export const celOrFah = (temp, unit) => {
-  let returnValue;
-  if (unit === 'metric') returnValue = `${Math.round(temp)} °C`;
-  if (unit === 'imperial') returnValue = `${Math.round(temp)} °F`;
-  return returnValue;
-};
-
 export const titleCase = (str) => {
   const returnValue = str.toLowerCase().split(' ');
   for (let i = 0; i < returnValue.length; i += 1) {

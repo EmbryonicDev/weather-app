@@ -45,9 +45,16 @@ export const loadPage = {
     }
   },
 
+  celOrFah(temp, unit) {
+    let returnValue;
+    if (unit === 'metric') returnValue = `${Math.round(temp)} °C`;
+    if (unit === 'imperial') returnValue = `${Math.round(temp)} °F`;
+    return returnValue;
+  },
+
   getTemp(temperature, element) {
     const dummyElement = element;
-    const temp = celOrFah(temperature, loadPage.unitUsed);
+    const temp = loadPage.celOrFah(temperature, loadPage.unitUsed);
     dummyElement.innerText = temp;
   },
 

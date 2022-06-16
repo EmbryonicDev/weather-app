@@ -8843,9 +8843,15 @@ var loadPage = {
       celBtn.classList.remove('selectedBtn');
     }
   },
+  celOrFah: function celOrFah(temp, unit) {
+    var returnValue;
+    if (unit === 'metric') returnValue = "".concat(Math.round(temp), " \xB0C");
+    if (unit === 'imperial') returnValue = "".concat(Math.round(temp), " \xB0F");
+    return returnValue;
+  },
   getTemp: function getTemp(temperature, element) {
     var dummyElement = element;
-    var temp = (0,_functions__WEBPACK_IMPORTED_MODULE_0__.celOrFah)(temperature, loadPage.unitUsed);
+    var temp = loadPage.celOrFah(temperature, loadPage.unitUsed);
     dummyElement.innerText = temp;
   },
   getWind: function getWind(windSpeed, element) {
@@ -9017,7 +9023,6 @@ var loadPage = {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "celOrFah": () => (/* binding */ celOrFah),
 /* harmony export */   "changeTimeZone": () => (/* binding */ changeTimeZone),
 /* harmony export */   "countryName": () => (/* binding */ countryName),
 /* harmony export */   "getDistance": () => (/* binding */ getDistance),
@@ -9047,13 +9052,13 @@ var getDistance = function getDistance(distanceInMeters, unit) {
   if (unit === 'metric') returnValue = "".concat(Math.round(distanceInMeters / 1000), " km");
   if (unit === 'imperial') returnValue = "".concat(Math.round(distanceInMeters / 1609), " mi");
   return returnValue;
-};
-var celOrFah = function celOrFah(temp, unit) {
-  var returnValue;
-  if (unit === 'metric') returnValue = "".concat(Math.round(temp), " \xB0C");
-  if (unit === 'imperial') returnValue = "".concat(Math.round(temp), " \xB0F");
-  return returnValue;
-};
+}; // export const celOrFah = (temp, unit) => {
+//   let returnValue;
+//   if (unit === 'metric') returnValue = `${Math.round(temp)} °C`;
+//   if (unit === 'imperial') returnValue = `${Math.round(temp)} °F`;
+//   return returnValue;
+// };
+
 var titleCase = function titleCase(str) {
   var returnValue = str.toLowerCase().split(' ');
 

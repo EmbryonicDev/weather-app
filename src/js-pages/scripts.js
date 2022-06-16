@@ -93,7 +93,6 @@ export const loadPage = {
     },
     sharedDomEl() {
       loadPage.placeDate.cityName = document.querySelector('#cityDate h2');
-      loadPage.placeDate.date = document.querySelector('#cityDate h4');
     },
     getCity() {
       loadPage.placeDate.cityName.innerText = loadPage.data.city;
@@ -102,10 +101,12 @@ export const loadPage = {
       loadPage.placeDate.cityName.innerText += `, ${countryName.of(loadPage.data.countryCode)}`;
     },
     getDate() {
+      const cityHeading = document.querySelector('#cityDate h4');
       let date = new Date();
+
       date = changeTimeZone(date, loadPage.data.forecast.timezone);
       const formattedDate = format(date, 'eeee, d MMMM yyyy | H:mm');
-      loadPage.placeDate.date.innerText = formattedDate;
+      cityHeading.innerText = formattedDate;
     },
   },
 

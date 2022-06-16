@@ -8836,6 +8836,7 @@ var loadPage = {
 
     return init;
   }(),
+  // Start of helper functions
   titleCase: function titleCase(str) {
     var returnValue = str.toLowerCase().split(' ');
 
@@ -8920,6 +8921,7 @@ var loadPage = {
     if (iconCode === '50d') dummyElement.src = _assets_icons_50d_svg__WEBPACK_IMPORTED_MODULE_17__;
     if (iconCode === '1232n') dummyElement.src = _assets_icons_1232n_svg__WEBPACK_IMPORTED_MODULE_19__;
   },
+  // End of helper functions
   placeDate: {
     init: function init() {
       loadPage.placeDate.sharedDomEl();

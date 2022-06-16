@@ -8882,12 +8882,12 @@ var loadPage = {
   },
   placeDate: {
     init: function init() {
-      loadPage.placeDate.cacheDom();
+      loadPage.placeDate.sharedDomEl();
       loadPage.placeDate.getCity();
       loadPage.placeDate.getCountry();
       loadPage.placeDate.getDate();
     },
-    cacheDom: function cacheDom() {
+    sharedDomEl: function sharedDomEl() {
       loadPage.placeDate.cityName = document.querySelector('#cityDate h2');
       loadPage.placeDate.date = document.querySelector('#cityDate h4');
     },
@@ -8906,7 +8906,7 @@ var loadPage = {
   },
   weatherNow: {
     init: function init() {
-      loadPage.weatherNow.cacheDom(); // get current temp
+      loadPage.weatherNow.sharedDomEl(); // get current temp
 
       loadPage.getTemp(loadPage.data.forecast.current.temp, loadPage.weatherNow.temp); // get feels like temp
 
@@ -8914,7 +8914,7 @@ var loadPage = {
       loadPage.weatherNow.getSky();
       loadPage.getIcon(loadPage.data.forecast.current.weather[0].icon, loadPage.weatherNow.weatherIcon);
     },
-    cacheDom: function cacheDom() {
+    sharedDomEl: function sharedDomEl() {
       loadPage.weatherNow.temp = document.querySelector('#dayMain span');
       loadPage.weatherNow.sky = document.querySelector('#daySky');
       loadPage.weatherNow.weatherIcon = document.querySelector('#dayMain > p > img');
@@ -8927,7 +8927,7 @@ var loadPage = {
   },
   dayDetails: {
     init: function init() {
-      loadPage.dayDetails.cacheDom();
+      loadPage.dayDetails.sharedDomEl();
       loadPage.getWind(loadPage.data.forecast.current.wind_speed, loadPage.dayDetails.wind);
       loadPage.dayDetails.getHumidity();
       loadPage.dayDetails.getUvIndex();
@@ -8938,7 +8938,7 @@ var loadPage = {
       loadPage.dayDetails.getSunset();
       loadPage.dayDetails.getPressure();
     },
-    cacheDom: function cacheDom() {
+    sharedDomEl: function sharedDomEl() {
       loadPage.dayDetails.wind = document.querySelector('#wind .dayData');
       loadPage.dayDetails.humidity = document.querySelector('#humidity .dayData');
       loadPage.dayDetails.uvIndex = document.querySelector('#uv .dayData');

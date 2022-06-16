@@ -150,46 +150,48 @@ export const loadPage = {
     },
     sharedDomEl() {
       loadPage.dayDetails.wind = document.querySelector('#wind .dayData');
-      loadPage.dayDetails.humidity = document.querySelector('#humidity .dayData');
-      loadPage.dayDetails.uvIndex = document.querySelector('#uv .dayData');
-      loadPage.dayDetails.visibility = document.querySelector('#visibility .dayData');
-      loadPage.dayDetails.clouds = document.querySelector('#clouds .dayData');
-      loadPage.dayDetails.rainChance = document.querySelector('#rainChance .dayData');
-      loadPage.dayDetails.sunrise = document.querySelector('#sunrise .dayData');
-      loadPage.dayDetails.sunset = document.querySelector('#sunset .dayData');
-      loadPage.dayDetails.pressure = document.querySelector('#pressure .dayData');
     },
     getHumidity() {
-      loadPage.dayDetails.humidity.innerText = `${loadPage.data.forecast.current.humidity}%`;
+      const humidity = document.querySelector('#humidity .dayData');
+      humidity.innerText = `${loadPage.data.forecast.current.humidity}%`;
     },
     getUvIndex() {
-      loadPage.dayDetails.uvIndex.innerText = `${Math.round(loadPage.data.forecast.current.uvi)}`;
+      const uvIndex = document.querySelector('#uv .dayData');
+      uvIndex.innerText = `${Math.round(loadPage.data.forecast.current.uvi)}`;
     },
     getVisibility() {
+      const visibility = document.querySelector('#visibility .dayData');
       const visDistance = getDistance(loadPage.data.forecast.current.visibility, loadPage.unitUsed);
-      loadPage.dayDetails.visibility.innerText = visDistance;
+
+      visibility.innerText = visDistance;
     },
     getClouds() {
-      loadPage.dayDetails.clouds.innerText = `${loadPage.data.forecast.current.clouds}%`;
+      const clouds = document.querySelector('#clouds .dayData');
+      clouds.innerText = `${loadPage.data.forecast.current.clouds}%`;
     },
     getChanceOfRain() {
+      const rainChance = document.querySelector('#rainChance .dayData');
       const rainPercentage = loadPage.data.forecast.daily[0].pop;
-      loadPage.dayDetails.rainChance.innerText = `${Math.round(rainPercentage * 100)}%`;
+
+      rainChance.innerText = `${Math.round(rainPercentage * 100)}%`;
     },
     getSunrise() {
+      const sunrise = document.querySelector('#sunrise .dayData');
       let date = fromUnixTime(loadPage.data.forecast.current.sunrise);
       date = changeTimeZone(date, loadPage.data.forecast.timezone);
       const extractedTime = format(date, 'H:mm');
-      loadPage.dayDetails.sunrise.innerText = extractedTime;
+      sunrise.innerText = extractedTime;
     },
     getSunset() {
+      const sunset = document.querySelector('#sunset .dayData');
       let date = fromUnixTime(loadPage.data.forecast.current.sunset);
       date = changeTimeZone(date, loadPage.data.forecast.timezone);
       const extractedTime = format(date, 'H:mm');
-      loadPage.dayDetails.sunset.innerText = extractedTime;
+      sunset.innerText = extractedTime;
     },
     getPressure() {
-      loadPage.dayDetails.pressure.innerText = `${loadPage.data.forecast.current.pressure} hPa`;
+      const pressure = document.querySelector('#pressure .dayData');
+      pressure.innerText = `${loadPage.data.forecast.current.pressure} hPa`;
     },
   },
 

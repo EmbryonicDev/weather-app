@@ -34,6 +34,7 @@ export const loadPage = {
     loadPage.weekly.init();
   },
 
+  // Start of helper functions
   titleCase(str) {
     const returnValue = str.toLowerCase().split(' ');
     for (let i = 0; i < returnValue.length; i += 1) {
@@ -126,6 +127,7 @@ export const loadPage = {
     if (iconCode === '50d') dummyElement.src = icon50d;
     if (iconCode === '1232n') dummyElement.src = icon1232n;
   },
+  // End of helper functions
 
   placeDate: {
     init: () => {

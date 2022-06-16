@@ -8882,14 +8882,13 @@ var loadPage = {
   },
   placeDate: {
     init: function init() {
-      loadPage.placeDate.cacheDom();
+      loadPage.placeDate.sharedDomEl();
       loadPage.placeDate.getCity();
       loadPage.placeDate.getCountry();
       loadPage.placeDate.getDate();
     },
-    cacheDom: function cacheDom() {
+    sharedDomEl: function sharedDomEl() {
       loadPage.placeDate.cityName = document.querySelector('#cityDate h2');
-      loadPage.placeDate.date = document.querySelector('#cityDate h4');
     },
     getCity: function getCity() {
       loadPage.placeDate.cityName.innerText = loadPage.data.city;
@@ -8898,15 +8897,16 @@ var loadPage = {
       loadPage.placeDate.cityName.innerText += ", ".concat(_functions__WEBPACK_IMPORTED_MODULE_0__.countryName.of(loadPage.data.countryCode));
     },
     getDate: function getDate() {
+      var cityHeading = document.querySelector('#cityDate h4');
       var date = new Date();
       date = (0,_functions__WEBPACK_IMPORTED_MODULE_0__.changeTimeZone)(date, loadPage.data.forecast.timezone);
       var formattedDate = (0,date_fns__WEBPACK_IMPORTED_MODULE_21__["default"])(date, 'eeee, d MMMM yyyy | H:mm');
-      loadPage.placeDate.date.innerText = formattedDate;
+      cityHeading.innerText = formattedDate;
     }
   },
   weatherNow: {
     init: function init() {
-      loadPage.weatherNow.cacheDom(); // get current temp
+      loadPage.weatherNow.sharedDomEl(); // get current temp
 
       loadPage.getTemp(loadPage.data.forecast.current.temp, loadPage.weatherNow.temp); // get feels like temp
 
@@ -8914,20 +8914,20 @@ var loadPage = {
       loadPage.weatherNow.getSky();
       loadPage.getIcon(loadPage.data.forecast.current.weather[0].icon, loadPage.weatherNow.weatherIcon);
     },
-    cacheDom: function cacheDom() {
+    sharedDomEl: function sharedDomEl() {
       loadPage.weatherNow.temp = document.querySelector('#dayMain span');
-      loadPage.weatherNow.sky = document.querySelector('#daySky');
       loadPage.weatherNow.weatherIcon = document.querySelector('#dayMain > p > img');
       loadPage.weatherNow.feelsLike = document.querySelector('#feelsLike span');
     },
     getSky: function getSky() {
+      var skyEl = document.querySelector('#daySky');
       var sky = (0,_functions__WEBPACK_IMPORTED_MODULE_0__.titleCase)(loadPage.data.forecast.current.weather[0].description);
-      loadPage.weatherNow.sky.innerText = sky;
+      skyEl.innerText = sky;
     }
   },
   dayDetails: {
     init: function init() {
-      loadPage.dayDetails.cacheDom();
+      loadPage.dayDetails.sharedDomEl();
       loadPage.getWind(loadPage.data.forecast.current.wind_speed, loadPage.dayDetails.wind);
       loadPage.dayDetails.getHumidity();
       loadPage.dayDetails.getUvIndex();
@@ -8938,48 +8938,48 @@ var loadPage = {
       loadPage.dayDetails.getSunset();
       loadPage.dayDetails.getPressure();
     },
-    cacheDom: function cacheDom() {
+    sharedDomEl: function sharedDomEl() {
       loadPage.dayDetails.wind = document.querySelector('#wind .dayData');
-      loadPage.dayDetails.humidity = document.querySelector('#humidity .dayData');
-      loadPage.dayDetails.uvIndex = document.querySelector('#uv .dayData');
-      loadPage.dayDetails.visibility = document.querySelector('#visibility .dayData');
-      loadPage.dayDetails.clouds = document.querySelector('#clouds .dayData');
-      loadPage.dayDetails.rainChance = document.querySelector('#rainChance .dayData');
-      loadPage.dayDetails.sunrise = document.querySelector('#sunrise .dayData');
-      loadPage.dayDetails.sunset = document.querySelector('#sunset .dayData');
-      loadPage.dayDetails.pressure = document.querySelector('#pressure .dayData');
     },
     getHumidity: function getHumidity() {
-      loadPage.dayDetails.humidity.innerText = "".concat(loadPage.data.forecast.current.humidity, "%");
+      var humidity = document.querySelector('#humidity .dayData');
+      humidity.innerText = "".concat(loadPage.data.forecast.current.humidity, "%");
     },
     getUvIndex: function getUvIndex() {
-      loadPage.dayDetails.uvIndex.innerText = "".concat(Math.round(loadPage.data.forecast.current.uvi));
+      var uvIndex = document.querySelector('#uv .dayData');
+      uvIndex.innerText = "".concat(Math.round(loadPage.data.forecast.current.uvi));
     },
     getVisibility: function getVisibility() {
+      var visibility = document.querySelector('#visibility .dayData');
       var visDistance = (0,_functions__WEBPACK_IMPORTED_MODULE_0__.getDistance)(loadPage.data.forecast.current.visibility, loadPage.unitUsed);
-      loadPage.dayDetails.visibility.innerText = visDistance;
+      visibility.innerText = visDistance;
     },
     getClouds: function getClouds() {
-      loadPage.dayDetails.clouds.innerText = "".concat(loadPage.data.forecast.current.clouds, "%");
+      var clouds = document.querySelector('#clouds .dayData');
+      clouds.innerText = "".concat(loadPage.data.forecast.current.clouds, "%");
     },
     getChanceOfRain: function getChanceOfRain() {
+      var rainChance = document.querySelector('#rainChance .dayData');
       var rainPercentage = loadPage.data.forecast.daily[0].pop;
-      loadPage.dayDetails.rainChance.innerText = "".concat(Math.round(rainPercentage * 100), "%");
+      rainChance.innerText = "".concat(Math.round(rainPercentage * 100), "%");
     },
     getSunrise: function getSunrise() {
+      var sunrise = document.querySelector('#sunrise .dayData');
       var date = (0,date_fns__WEBPACK_IMPORTED_MODULE_22__["default"])(loadPage.data.forecast.current.sunrise);
       date = (0,_functions__WEBPACK_IMPORTED_MODULE_0__.changeTimeZone)(date, loadPage.data.forecast.timezone);
       var extractedTime = (0,date_fns__WEBPACK_IMPORTED_MODULE_21__["default"])(date, 'H:mm');
-      loadPage.dayDetails.sunrise.innerText = extractedTime;
+      sunrise.innerText = extractedTime;
     },
     getSunset: function getSunset() {
+      var sunset = document.querySelector('#sunset .dayData');
       var date = (0,date_fns__WEBPACK_IMPORTED_MODULE_22__["default"])(loadPage.data.forecast.current.sunset);
       date = (0,_functions__WEBPACK_IMPORTED_MODULE_0__.changeTimeZone)(date, loadPage.data.forecast.timezone);
       var extractedTime = (0,date_fns__WEBPACK_IMPORTED_MODULE_21__["default"])(date, 'H:mm');
-      loadPage.dayDetails.sunset.innerText = extractedTime;
+      sunset.innerText = extractedTime;
     },
     getPressure: function getPressure() {
-      loadPage.dayDetails.pressure.innerText = "".concat(loadPage.data.forecast.current.pressure, " hPa");
+      var pressure = document.querySelector('#pressure .dayData');
+      pressure.innerText = "".concat(loadPage.data.forecast.current.pressure, " hPa");
     }
   },
   weekly: {

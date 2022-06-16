@@ -9031,10 +9031,7 @@ var loadPage = {
 
       for (var i = 1; i < 8; i += 1) {
         // get weekday from date
-        var date = (0,date_fns__WEBPACK_IMPORTED_MODULE_20__["default"])(loadPage.data.forecast.daily[i].dt);
-        date = loadPage.changeTimeZone(date, loadPage.data.forecast.timezone);
-        var dayName = (0,date_fns__WEBPACK_IMPORTED_MODULE_21__["default"])(date, 'eeee');
-        weekDay[i - 1].innerText = dayName;
+        weekDay[i - 1].innerText = loadPage.getTime(loadPage.data.forecast.daily[i].dt, loadPage.data.forecast.timezone, 'eeee');
         loadPage.getIcon(loadPage.data.forecast.daily[i].weather[0].icon, icon[i - 1]);
         loadPage.getTemp(loadPage.data.forecast.daily[i].temp.max, maxTemp[i - 1]);
         loadPage.getTemp(loadPage.data.forecast.daily[i].temp.min, minTemp[i - 1]);

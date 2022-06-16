@@ -1,4 +1,5 @@
 import { format, fromUnixTime } from 'date-fns';
+// eslint-disable-next-line import/no-cycle
 import { getData } from './main-async';
 import icon01d from '../assets/icons/01d.svg';
 import icon01n from '../assets/icons/01n.svg';

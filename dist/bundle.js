@@ -8843,6 +8843,17 @@ var loadPage = {
       celBtn.classList.remove('selectedBtn');
     }
   },
+  changeTimeZone: function changeTimeZone(date, timeZone) {
+    if (typeof date === 'string') {
+      return new Date(new Date(date).toLocaleString('en-US', {
+        timeZone: timeZone
+      }));
+    }
+
+    return new Date(date.toLocaleString('en-US', {
+      timeZone: timeZone
+    }));
+  },
   celOrFah: function celOrFah(temp, unit) {
     var returnValue;
     if (unit === 'metric') returnValue = "".concat(Math.round(temp), " \xB0C");
@@ -8865,7 +8876,7 @@ var loadPage = {
   },
   getTime: function getTime(time, timeZone) {
     var date = (0,date_fns__WEBPACK_IMPORTED_MODULE_21__["default"])(time);
-    date = (0,_functions__WEBPACK_IMPORTED_MODULE_0__.changeTimeZone)(date, timeZone);
+    date = loadPage.changeTimeZone(date, timeZone);
     return (0,date_fns__WEBPACK_IMPORTED_MODULE_22__["default"])(date, 'H:mm');
   },
   getIcon: function getIcon(iconCode, element) {
@@ -8910,7 +8921,7 @@ var loadPage = {
     getDate: function getDate() {
       var cityHeading = document.querySelector('#cityDate h4');
       var date = new Date();
-      date = (0,_functions__WEBPACK_IMPORTED_MODULE_0__.changeTimeZone)(date, loadPage.data.forecast.timezone);
+      date = loadPage.changeTimeZone(date, loadPage.data.forecast.timezone);
       var formattedDate = (0,date_fns__WEBPACK_IMPORTED_MODULE_22__["default"])(date, 'eeee, d MMMM yyyy | H:mm');
       cityHeading.innerText = formattedDate;
     }
@@ -9001,7 +9012,7 @@ var loadPage = {
       for (var i = 1; i < 8; i += 1) {
         // get weekday from date
         var date = (0,date_fns__WEBPACK_IMPORTED_MODULE_21__["default"])(loadPage.data.forecast.daily[i].dt);
-        date = (0,_functions__WEBPACK_IMPORTED_MODULE_0__.changeTimeZone)(date, loadPage.data.forecast.timezone);
+        date = loadPage.changeTimeZone(date, loadPage.data.forecast.timezone);
         var dayName = (0,date_fns__WEBPACK_IMPORTED_MODULE_22__["default"])(date, 'eeee');
         weekDay[i - 1].innerText = dayName;
         loadPage.getIcon(loadPage.data.forecast.daily[i].weather[0].icon, icon[i - 1]);
@@ -9023,7 +9034,6 @@ var loadPage = {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "changeTimeZone": () => (/* binding */ changeTimeZone),
 /* harmony export */   "countryName": () => (/* binding */ countryName),
 /* harmony export */   "getDistance": () => (/* binding */ getDistance),
 /* harmony export */   "setErrorMsg": () => (/* binding */ setErrorMsg),
@@ -9031,18 +9041,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "stopSpinner": () => (/* binding */ stopSpinner),
 /* harmony export */   "titleCase": () => (/* binding */ titleCase)
 /* harmony export */ });
-var changeTimeZone = function changeTimeZone(date, timeZone) {
-  if (typeof date === 'string') {
-    return new Date(new Date(date).toLocaleString('en-US', {
-      timeZone: timeZone
-    }));
-  }
-
-  return new Date(date.toLocaleString('en-US', {
-    timeZone: timeZone
-  }));
-}; // Convert country code to full country name
-
+// Convert country code to full country name
 var countryName = new Intl.DisplayNames(['en'], {
   type: 'region'
 }); // Meters to km / mi
@@ -9052,13 +9051,7 @@ var getDistance = function getDistance(distanceInMeters, unit) {
   if (unit === 'metric') returnValue = "".concat(Math.round(distanceInMeters / 1000), " km");
   if (unit === 'imperial') returnValue = "".concat(Math.round(distanceInMeters / 1609), " mi");
   return returnValue;
-}; // export const celOrFah = (temp, unit) => {
-//   let returnValue;
-//   if (unit === 'metric') returnValue = `${Math.round(temp)} °C`;
-//   if (unit === 'imperial') returnValue = `${Math.round(temp)} °F`;
-//   return returnValue;
-// };
-
+};
 var titleCase = function titleCase(str) {
   var returnValue = str.toLowerCase().split(' ');
 

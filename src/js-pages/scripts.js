@@ -1,6 +1,6 @@
 import { format, fromUnixTime } from 'date-fns';
 import {
-  celOrFah, changeTimeZone, countryName, getDistance, titleCase,
+  countryName, getDistance, titleCase,
 } from './functions';
 import { getData } from './main-async';
 import icon01d from '../assets/icons/01d.svg';
@@ -45,6 +45,21 @@ export const loadPage = {
     }
   },
 
+  changeTimeZone(date, timeZone) {
+    if (typeof date === 'string') {
+      return new Date(
+        new Date(date).toLocaleString('en-US', {
+          timeZone,
+        }),
+      );
+    }
+    return new Date(
+      date.toLocaleString('en-US', {
+        timeZone,
+      }),
+    );
+  },
+
   celOrFah(temp, unit) {
     let returnValue;
     if (unit === 'metric') returnValue = `${Math.round(temp)} °C`;
@@ -69,7 +84,7 @@ export const loadPage = {
 
   getTime(time, timeZone) {
     let date = fromUnixTime(time);
-    date = changeTimeZone(date, timeZone);
+    date = loadPage.changeTimeZone(date, timeZone);
     return format(date, 'H:mm');
   },
 
@@ -117,7 +132,7 @@ export const loadPage = {
       const cityHeading = document.querySelector('#cityDate h4');
       let date = new Date();
 
-      date = changeTimeZone(date, loadPage.data.forecast.timezone);
+      date = loadPage.changeTimeZone(date, loadPage.data.forecast.timezone);
       const formattedDate = format(date, 'eeee, d MMMM yyyy | H:mm');
       cityHeading.innerText = formattedDate;
     },
@@ -222,7 +237,7 @@ export const loadPage = {
       for (let i = 1; i < 8; i += 1) {
         // get weekday from date
         let date = fromUnixTime(loadPage.data.forecast.daily[i].dt);
-        date = changeTimeZone(date, loadPage.data.forecast.timezone);
+        date = loadPage.changeTimeZone(date, loadPage.data.forecast.timezone);
         const dayName = format(date, 'eeee');
         weekDay[i - 1].innerText = dayName;
 

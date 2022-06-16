@@ -41,7 +41,6 @@ export const titleCase = (str) => {
 
 export const setErrorMsg = (onOrOff) => {
   const errorMsg = document.getElementById('error');
-  console.log('called');
 
   if (onOrOff === 'on') {
     errorMsg.style.cssText = 'color: yellow; font-weight: bold; align-self: flex-start; background: red; padding: 3px; border-radius: 6px';

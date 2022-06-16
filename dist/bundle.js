@@ -9066,7 +9066,6 @@ var titleCase = function titleCase(str) {
 };
 var setErrorMsg = function setErrorMsg(onOrOff) {
   var errorMsg = document.getElementById('error');
-  console.log('called');
 
   if (onOrOff === 'on') {
     errorMsg.style.cssText = 'color: yellow; font-weight: bold; align-self: flex-start; background: red; padding: 3px; border-radius: 6px';

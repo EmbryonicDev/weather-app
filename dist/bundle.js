@@ -9023,6 +9023,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "countryName": () => (/* binding */ countryName),
 /* harmony export */   "getDistance": () => (/* binding */ getDistance),
 /* harmony export */   "setErrorMsg": () => (/* binding */ setErrorMsg),
+/* harmony export */   "startSpinner": () => (/* binding */ startSpinner),
+/* harmony export */   "stopSpinner": () => (/* binding */ stopSpinner),
 /* harmony export */   "titleCase": () => (/* binding */ titleCase)
 /* harmony export */ });
 var changeTimeZone = function changeTimeZone(date, timeZone) {
@@ -9074,6 +9076,14 @@ var setErrorMsg = function setErrorMsg(onOrOff) {
     errorMsg.innerText = '';
   }
 };
+var startSpinner = function startSpinner() {
+  document.querySelector('body').style.visibility = 'hidden';
+  document.getElementById('spinner').style.visibility = 'visible';
+};
+var stopSpinner = function stopSpinner() {
+  document.querySelector('body').style.visibility = 'visible';
+  document.getElementById('spinner').style.visibility = 'hidden';
+};
 
 /***/ }),
 /* 311 */
@@ -9123,34 +9133,35 @@ var getData = /*#__PURE__*/function () {
             apiKey = '8d8571b1c93bd4e2325c718b62e874dc';
             url = "https://api.openweathermap.org/data/2.5/weather?q=".concat(location, "&appid=").concat(apiKey, "&units=").concat(unit);
             _context.prev = 4;
-            _context.next = 7;
+            (0,_functions__WEBPACK_IMPORTED_MODULE_1__.startSpinner)();
+            _context.next = 8;
             return fetch(url, {
               mode: 'cors'
             });
 
-          case 7:
+          case 8:
             response = _context.sent;
-            _context.next = 10;
+            _context.next = 11;
             return response.json();
 
-          case 10:
+          case 11:
             locationData = _context.sent;
             countryCode = locationData.sys.country;
             city = locationData.name;
             longitude = locationData.coord.lon;
             latitude = locationData.coord.lat;
             url2 = "https://api.openweathermap.org/data/2.5/onecall?lat=".concat(latitude, "&lon=").concat(longitude, "&exclude=alerts,minutely&units=").concat(unit, "&appid=").concat(apiKey);
-            _context.next = 18;
+            _context.next = 19;
             return fetch(url2, {
               mode: 'cors'
             });
 
-          case 18:
+          case 19:
             response2 = _context.sent;
-            _context.next = 21;
+            _context.next = 22;
             return response2.json();
 
-          case 21:
+          case 22:
             forecast = _context.sent;
             (0,_functions__WEBPACK_IMPORTED_MODULE_1__.setErrorMsg)('off');
             return _context.abrupt("return", {
@@ -9160,8 +9171,8 @@ var getData = /*#__PURE__*/function () {
               forecast: forecast
             });
 
-          case 26:
-            _context.prev = 26;
+          case 27:
+            _context.prev = 27;
             _context.t0 = _context["catch"](4);
             (0,_functions__WEBPACK_IMPORTED_MODULE_1__.setErrorMsg)('on'); // Reset local storage after wrong city entered
 
@@ -9172,12 +9183,17 @@ var getData = /*#__PURE__*/function () {
             localStorage.setItem('storedCity', JSON.stringify(_dom__WEBPACK_IMPORTED_MODULE_0__.storedCity));
             console.error('City Not Found');
 
-          case 32:
+          case 33:
+            _context.prev = 33;
+            (0,_functions__WEBPACK_IMPORTED_MODULE_1__.stopSpinner)();
+            return _context.finish(33);
+
+          case 36:
           case "end":
             return _context.stop();
         }
       }
-    }, _callee, null, [[4, 26]]);
+    }, _callee, null, [[4, 27, 33, 36]]);
   }));
 
   return function getData() {

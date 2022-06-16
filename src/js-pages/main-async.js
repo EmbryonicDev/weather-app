@@ -1,5 +1,5 @@
 import { storedCity } from './dom';
-import { setErrorMsg } from './functions';
+import { setErrorMsg, startSpinner, stopSpinner } from './functions';
 
 // eslint-disable-next-line consistent-return
 export const getData = async (location = 'Amsterdam', unit = 'metric') => {
@@ -7,6 +7,7 @@ export const getData = async (location = 'Amsterdam', unit = 'metric') => {
   const url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${apiKey}&units=${unit}`;
 
   try {
+    startSpinner();
     const response = await fetch(url, { mode: 'cors' });
     const locationData = await response.json();
 
@@ -29,6 +30,8 @@ export const getData = async (location = 'Amsterdam', unit = 'metric') => {
     while (storedCity.length > 0) storedCity.pop();
     localStorage.setItem('storedCity', JSON.stringify(storedCity));
     console.error('City Not Found');
+  } finally {
+    stopSpinner();
   }
 };
 

@@ -9023,6 +9023,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "countryName": () => (/* binding */ countryName),
 /* harmony export */   "getDistance": () => (/* binding */ getDistance),
 /* harmony export */   "setErrorMsg": () => (/* binding */ setErrorMsg),
+/* harmony export */   "startSpinner": () => (/* binding */ startSpinner),
+/* harmony export */   "stopSpinner": () => (/* binding */ stopSpinner),
 /* harmony export */   "titleCase": () => (/* binding */ titleCase)
 /* harmony export */ });
 var changeTimeZone = function changeTimeZone(date, timeZone) {
@@ -9074,6 +9076,14 @@ var setErrorMsg = function setErrorMsg(onOrOff) {
     errorMsg.innerText = '';
   }
 };
+var startSpinner = function startSpinner() {
+  document.querySelector('body').style.visibility = 'hidden';
+  document.getElementById('spinner').style.visibility = 'visible';
+};
+var stopSpinner = function stopSpinner() {
+  document.querySelector('body').style.visibility = 'visible';
+  document.getElementById('spinner').style.visibility = 'hidden';
+};
 
 /***/ }),
 /* 311 */
@@ -9123,34 +9133,35 @@ var getData = /*#__PURE__*/function () {
             apiKey = '8d8571b1c93bd4e2325c718b62e874dc';
             url = "https://api.openweathermap.org/data/2.5/weather?q=".concat(location, "&appid=").concat(apiKey, "&units=").concat(unit);
             _context.prev = 4;
-            _context.next = 7;
+            (0,_functions__WEBPACK_IMPORTED_MODULE_1__.startSpinner)();
+            _context.next = 8;
             return fetch(url, {
               mode: 'cors'
             });
 
-          case 7:
+          case 8:
             response = _context.sent;
-            _context.next = 10;
+            _context.next = 11;
             return response.json();
 
-          case 10:
+          case 11:
             locationData = _context.sent;
             countryCode = locationData.sys.country;
             city = locationData.name;
             longitude = locationData.coord.lon;
             latitude = locationData.coord.lat;
             url2 = "https://api.openweathermap.org/data/2.5/onecall?lat=".concat(latitude, "&lon=").concat(longitude, "&exclude=alerts,minutely&units=").concat(unit, "&appid=").concat(apiKey);
-            _context.next = 18;
+            _context.next = 19;
             return fetch(url2, {
               mode: 'cors'
             });
 
-          case 18:
+          case 19:
             response2 = _context.sent;
-            _context.next = 21;
+            _context.next = 22;
             return response2.json();
 
-          case 21:
+          case 22:
             forecast = _context.sent;
             (0,_functions__WEBPACK_IMPORTED_MODULE_1__.setErrorMsg)('off');
             return _context.abrupt("return", {
@@ -9160,8 +9171,8 @@ var getData = /*#__PURE__*/function () {
               forecast: forecast
             });
 
-          case 26:
-            _context.prev = 26;
+          case 27:
+            _context.prev = 27;
             _context.t0 = _context["catch"](4);
             (0,_functions__WEBPACK_IMPORTED_MODULE_1__.setErrorMsg)('on'); // Reset local storage after wrong city entered
 
@@ -9172,12 +9183,17 @@ var getData = /*#__PURE__*/function () {
             localStorage.setItem('storedCity', JSON.stringify(_dom__WEBPACK_IMPORTED_MODULE_0__.storedCity));
             console.error('City Not Found');
 
-          case 32:
+          case 33:
+            _context.prev = 33;
+            (0,_functions__WEBPACK_IMPORTED_MODULE_1__.stopSpinner)();
+            return _context.finish(33);
+
+          case 36:
           case "end":
             return _context.stop();
         }
       }
-    }, _callee, null, [[4, 26]]);
+    }, _callee, null, [[4, 27, 33, 36]]);
   }));
 
   return function getData() {
@@ -12772,7 +12788,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_noSourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "body {\n  height: 100vh;\n  width: 100vw;\n  display: flex;\n  flex-direction: column;\n  background-image: linear-gradient(to bottom, #ef4444, #f97316, #f59e0b, #eab308, #84cc16, #22c55e, #10b981, #14b8a6, #06b6d4, #0ea5e9, #3b82f6, #6366f1, #8b5cf6, #a855f7, #d946ef, #ec4899, #f43f5e);\n}\n\n#header {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n}\n\n#mainIcon {\n  height: 3rem;\n  align-self: center;\n}\n\n#title {\n  display: flex;\n  gap: 6px;\n  padding-left: 16px;\n}\n\nform {\n  display: flex;\n  flex-direction: column;\n  align-self: flex-end;\n}\n\ninput {\n  border-radius: 24px;\n  border: dotted transparent;\n  background: yellow;\n  padding: 9px;\n}\n\ninput:hover {\n  border: dotted black\n}\n\nform p {\n  display: flex;\n  margin-bottom: 0;\n}\n\nform button {\n  background: none;\n  border: none;\n}\n\nform button:hover {\n  cursor: pointer;\n}\n\nform img {\n  height: 2rem;\n}\n\n#error {\n  margin: 0;\n  align-self: center;\n  margin-top: 6px;\n}\n\n#unitBtns {\n  padding-right: 16px;\n}\n\n.unitBtn {\n  border-radius: 12px;\n  border: transparent 2px solid;\n  padding: 6px;\n  background: rgb(58, 52, 227);\n  color: white;\n  font-weight: 600;\n}\n\n.selectedBtn {\n  border: white 2px solid;\n}\n\n.unitBtn:hover {\n  cursor: pointer;\n  transform: scale(1.1);\n}\n\n#dayForecast {\n  width: max-content;\n  justify-self: center;\n  align-self: center;\n  display: grid;\n  font-weight: 600;\n}\n\n#cityDate {\n  grid-column: 1 / span 4;\n  text-align: center;\n  margin: 16px;\n}\n\n#cityDate h2,\n#cityDate h4 {\n  margin: 0;\n}\n\n#dayMain {\n  grid-column: 1 / span 2;\n}\n\n/* Current weather icon */\n#dayMain>p>img {\n  height: 80px;\n}\n\n/* Icon & current temp div */\n#dayMain p:first-of-type {\n  display: flex;\n  align-items: center;\n  gap: 15px;\n  margin: 0 0 9px;\n}\n\n/* Current temp */\n#dayMain>p>img+span {\n  font-size: 1.8rem;\n}\n\n#dayDetails {\n  display: grid;\n  grid-template: repeat(3, 1fr) / repeat(3, 1fr);\n  align-items: center;\n  text-align: center;\n  row-gap: 9px;\n  margin: 0 0 15px 15px;\n}\n\n#dayDetails p:first-of-type {\n  margin: 3px;\n  color: #525252;\n  font-size: 0.8rem;\n}\n\n#daySky {\n  margin: 0 0 6px 0;\n}\n\n#feelsLike {\n  color: #525252;\n  margin: 0;\n}\n\n.dayData {\n  margin: 3px;\n}\n\n.dayIcon {\n  height: 36px;\n}\n\ntable {\n  align-self: center;\n  border-collapse: collapse;\n  letter-spacing: 1px;\n  width: max-content;\n}\n\ntable h2 {\n  font-size: 24px;\n  margin: 6px;\n}\n\ntd,\nth {\n  border-bottom: 1.5px solid yellow;\n  padding: 9px 9px;\n  text-align: center;\n  font-weight: bold;\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "body {\n  height: 100vh;\n  width: 100vw;\n  display: flex;\n  flex-direction: column;\n  background-image: linear-gradient(to bottom, #ef4444, #f97316, #f59e0b, #eab308, #84cc16, #22c55e, #10b981, #14b8a6, #06b6d4, #0ea5e9, #3b82f6, #6366f1, #8b5cf6, #a855f7, #d946ef, #ec4899, #f43f5e);\n  position: relative;\n}\n\n#header {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n}\n\n#spinner {\n  position: absolute;\n  align-self: center;\n  top: 150px;\n  height: 30%;\n  visibility: visible;\n}\n\n#mainIcon {\n  height: 3rem;\n  align-self: center;\n}\n\n#title {\n  display: flex;\n  gap: 6px;\n  padding-left: 16px;\n}\n\nform {\n  display: flex;\n  flex-direction: column;\n  align-self: flex-end;\n}\n\ninput {\n  border-radius: 24px;\n  border: dotted transparent;\n  background: yellow;\n  padding: 9px;\n}\n\ninput:hover {\n  border: dotted black\n}\n\nform p {\n  display: flex;\n  margin-bottom: 0;\n}\n\nform button {\n  background: none;\n  border: none;\n}\n\nform button:hover {\n  cursor: pointer;\n}\n\nform img {\n  height: 2rem;\n}\n\n#error {\n  margin: 0;\n  align-self: center;\n  margin-top: 6px;\n}\n\n#unitBtns {\n  padding-right: 16px;\n}\n\n.unitBtn {\n  border-radius: 12px;\n  border: transparent 2px solid;\n  padding: 6px;\n  background: rgb(58, 52, 227);\n  color: white;\n  font-weight: 600;\n}\n\n.selectedBtn {\n  border: white 2px solid;\n}\n\n.unitBtn:hover {\n  cursor: pointer;\n  transform: scale(1.1);\n}\n\n#dayForecast {\n  width: max-content;\n  justify-self: center;\n  align-self: center;\n  display: grid;\n  font-weight: 600;\n}\n\n#cityDate {\n  grid-column: 1 / span 4;\n  text-align: center;\n  margin: 16px;\n}\n\n#cityDate h2,\n#cityDate h4 {\n  margin: 0;\n}\n\n#dayMain {\n  grid-column: 1 / span 2;\n}\n\n/* Current weather icon */\n#dayMain>p>img {\n  height: 80px;\n}\n\n/* Icon & current temp div */\n#dayMain p:first-of-type {\n  display: flex;\n  align-items: center;\n  gap: 15px;\n  margin: 0 0 9px;\n}\n\n/* Current temp */\n#dayMain>p>img+span {\n  font-size: 1.8rem;\n}\n\n#dayDetails {\n  display: grid;\n  grid-template: repeat(3, 1fr) / repeat(3, 1fr);\n  align-items: center;\n  text-align: center;\n  row-gap: 9px;\n  margin: 0 0 15px 15px;\n}\n\n#dayDetails p:first-of-type {\n  margin: 3px;\n  color: #525252;\n  font-size: 0.8rem;\n}\n\n#daySky {\n  margin: 0 0 6px 0;\n}\n\n#feelsLike {\n  color: #525252;\n  margin: 0;\n}\n\n.dayData {\n  margin: 3px;\n}\n\n.dayIcon {\n  height: 36px;\n}\n\ntable {\n  align-self: center;\n  border-collapse: collapse;\n  letter-spacing: 1px;\n  width: max-content;\n}\n\ntable h2 {\n  font-size: 24px;\n  margin: 6px;\n}\n\ntd,\nth {\n  border-bottom: 1.5px solid yellow;\n  padding: 9px 9px;\n  text-align: center;\n  font-weight: bold;\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

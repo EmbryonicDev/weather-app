@@ -20,6 +20,16 @@ import icon13n from '../assets/icons/13n.svg';
 import icon50d from '../assets/icons/50d.svg';
 import icon50n from '../assets/icons/50n.svg';
 import icon1232n from '../assets/icons/1232n.svg';
+import mainIcon from '../assets/icons/weather-icon.svg';
+import magIcon from '../assets/icons/search-icon.svg';
+
+export const setStaticIcons = () => {
+  const searchIcon = document.getElementById('searchIcon');
+  const headerIcon = document.getElementById('mainIcon');
+
+  searchIcon.src = magIcon;
+  headerIcon.src = mainIcon;
+};
 
 // Convert country code to full country name
 export const countryName = new Intl.DisplayNames(['en'], { type: 'region' });

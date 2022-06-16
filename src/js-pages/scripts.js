@@ -1,6 +1,6 @@
 import { format, fromUnixTime } from 'date-fns';
 import {
-  countryName, getDistance, titleCase,
+  countryName, titleCase,
 } from './functions';
 import { getData } from './main-async';
 import icon01d from '../assets/icons/01d.svg';
@@ -32,6 +32,13 @@ export const loadPage = {
     loadPage.weatherNow.init();
     loadPage.dayDetails.init();
     loadPage.weekly.init();
+  },
+
+  getDistance(distanceInMeters, unit) {
+    let returnValue;
+    if (unit === 'metric') returnValue = `${Math.round(distanceInMeters / 1000)} km`;
+    if (unit === 'imperial') returnValue = `${Math.round(distanceInMeters / 1609)} mi`;
+    return returnValue;
   },
 
   formatBtn() {
@@ -189,7 +196,10 @@ export const loadPage = {
     },
     getVisibility() {
       const visibility = document.querySelector('#visibility .dayData');
-      const visDistance = getDistance(loadPage.data.forecast.current.visibility, loadPage.unitUsed);
+      const visDistance = loadPage.getDistance(
+        loadPage.data.forecast.current.visibility,
+        loadPage.unitUsed,
+      );
 
       visibility.innerText = visDistance;
     },

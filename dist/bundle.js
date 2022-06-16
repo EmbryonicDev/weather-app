@@ -8833,6 +8833,12 @@ var loadPage = {
 
     return init;
   }(),
+  getDistance: function getDistance(distanceInMeters, unit) {
+    var returnValue;
+    if (unit === 'metric') returnValue = "".concat(Math.round(distanceInMeters / 1000), " km");
+    if (unit === 'imperial') returnValue = "".concat(Math.round(distanceInMeters / 1609), " mi");
+    return returnValue;
+  },
   formatBtn: function formatBtn() {
     var unitBtn = document.querySelectorAll('.unitBtn');
     var celBtn = unitBtn[0];
@@ -8973,7 +8979,7 @@ var loadPage = {
     },
     getVisibility: function getVisibility() {
       var visibility = document.querySelector('#visibility .dayData');
-      var visDistance = (0,_functions__WEBPACK_IMPORTED_MODULE_0__.getDistance)(loadPage.data.forecast.current.visibility, loadPage.unitUsed);
+      var visDistance = loadPage.getDistance(loadPage.data.forecast.current.visibility, loadPage.unitUsed);
       visibility.innerText = visDistance;
     },
     getClouds: function getClouds() {
@@ -9035,7 +9041,6 @@ var loadPage = {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "countryName": () => (/* binding */ countryName),
-/* harmony export */   "getDistance": () => (/* binding */ getDistance),
 /* harmony export */   "setErrorMsg": () => (/* binding */ setErrorMsg),
 /* harmony export */   "startSpinner": () => (/* binding */ startSpinner),
 /* harmony export */   "stopSpinner": () => (/* binding */ stopSpinner),
@@ -9044,14 +9049,7 @@ __webpack_require__.r(__webpack_exports__);
 // Convert country code to full country name
 var countryName = new Intl.DisplayNames(['en'], {
   type: 'region'
-}); // Meters to km / mi
-
-var getDistance = function getDistance(distanceInMeters, unit) {
-  var returnValue;
-  if (unit === 'metric') returnValue = "".concat(Math.round(distanceInMeters / 1000), " km");
-  if (unit === 'imperial') returnValue = "".concat(Math.round(distanceInMeters / 1609), " mi");
-  return returnValue;
-};
+});
 var titleCase = function titleCase(str) {
   var returnValue = str.toLowerCase().split(' ');
 

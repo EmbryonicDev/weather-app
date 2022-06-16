@@ -1,14 +1,6 @@
 // Convert country code to full country name
 export const countryName = new Intl.DisplayNames(['en'], { type: 'region' });
 
-// Meters to km / mi
-export const getDistance = (distanceInMeters, unit) => {
-  let returnValue;
-  if (unit === 'metric') returnValue = `${Math.round(distanceInMeters / 1000)} km`;
-  if (unit === 'imperial') returnValue = `${Math.round(distanceInMeters / 1609)} mi`;
-  return returnValue;
-};
-
 export const titleCase = (str) => {
   const returnValue = str.toLowerCase().split(' ');
   for (let i = 0; i < returnValue.length; i += 1) {

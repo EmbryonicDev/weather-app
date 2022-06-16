@@ -24,7 +24,7 @@ export const getData = async (location = 'Amsterdam', unit = 'metric') => {
       city, countryCode, unit, forecast,
     };
   } catch (err) {
-    errorMsg.style.cssText = 'color: green; font-weight: bold; align-self: flex-start; background: red; padding: 3px; border-radius: 6px';
+    errorMsg.style.cssText = 'color: yellow; font-weight: bold; align-self: flex-start; background: red; padding: 3px; border-radius: 6px';
     while (storedCity.length > 0) storedCity.pop();
     localStorage.setItem('storedCity', JSON.stringify(storedCity));
     console.error('City Not Found');

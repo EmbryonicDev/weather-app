@@ -1,5 +1,6 @@
 import { storedCity } from './dom';
 
+// Start of helper functions
 const setErrorMsg = (onOrOff) => {
   const errorMsg = document.getElementById('error');
 
@@ -21,6 +22,7 @@ const stopSpinner = () => {
   document.querySelector('body').style.visibility = 'visible';
   document.getElementById('spinner').style.visibility = 'hidden';
 };
+// End of helper functions
 
 // eslint-disable-next-line consistent-return
 export const getData = async (location = 'Amsterdam', unit = 'metric') => {

@@ -1,7 +1,4 @@
 import { format, fromUnixTime } from 'date-fns';
-import {
-  countryName,
-} from './functions';
 import { getData } from './main-async';
 import icon01d from '../assets/icons/01d.svg';
 import icon01n from '../assets/icons/01n.svg';
@@ -22,6 +19,9 @@ import icon13n from '../assets/icons/13n.svg';
 import icon50d from '../assets/icons/50d.svg';
 import icon50n from '../assets/icons/50n.svg';
 import icon1232n from '../assets/icons/1232n.svg';
+
+// Convert country code to full country name
+export const countryName = new Intl.DisplayNames(['en'], { type: 'region' });
 
 export const loadPage = {
   init: async (city, unit) => {

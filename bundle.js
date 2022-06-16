@@ -8970,17 +8970,11 @@ var loadPage = {
     },
     getSunrise: function getSunrise() {
       var sunrise = document.querySelector('#sunrise .dayData');
-      var date = (0,date_fns__WEBPACK_IMPORTED_MODULE_21__["default"])(loadPage.data.forecast.current.sunrise);
-      date = (0,_functions__WEBPACK_IMPORTED_MODULE_0__.changeTimeZone)(date, loadPage.data.forecast.timezone);
-      var extractedTime = (0,date_fns__WEBPACK_IMPORTED_MODULE_22__["default"])(date, 'H:mm');
-      sunrise.innerText = extractedTime;
+      sunrise.innerText = loadPage.getTime(loadPage.data.forecast.current.sunrise, loadPage.data.forecast.timezone);
     },
     getSunset: function getSunset() {
       var sunset = document.querySelector('#sunset .dayData');
-      var date = (0,date_fns__WEBPACK_IMPORTED_MODULE_21__["default"])(loadPage.data.forecast.current.sunset);
-      date = (0,_functions__WEBPACK_IMPORTED_MODULE_0__.changeTimeZone)(date, loadPage.data.forecast.timezone);
-      var extractedTime = (0,date_fns__WEBPACK_IMPORTED_MODULE_22__["default"])(date, 'H:mm');
-      sunset.innerText = extractedTime;
+      sunset.innerText = loadPage.getTime(loadPage.data.forecast.current.sunset, loadPage.data.forecast.timezone);
     },
     getPressure: function getPressure() {
       var pressure = document.querySelector('#pressure .dayData');

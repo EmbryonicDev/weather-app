@@ -1,5 +1,15 @@
 import { storedCity } from './dom';
-import { setErrorMsg, startSpinner, stopSpinner } from './functions';
+import { setErrorMsg } from './functions';
+
+const startSpinner = () => {
+  document.querySelector('body').style.visibility = 'hidden';
+  document.getElementById('spinner').style.visibility = 'visible';
+};
+
+const stopSpinner = () => {
+  document.querySelector('body').style.visibility = 'visible';
+  document.getElementById('spinner').style.visibility = 'hidden';
+};
 
 // eslint-disable-next-line consistent-return
 export const getData = async (location = 'Amsterdam', unit = 'metric') => {

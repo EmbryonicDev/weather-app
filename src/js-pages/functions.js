@@ -12,13 +12,3 @@ export const setErrorMsg = (onOrOff) => {
     errorMsg.innerText = '';
   }
 };
-
-export const startSpinner = () => {
-  document.querySelector('body').style.visibility = 'hidden';
-  document.getElementById('spinner').style.visibility = 'visible';
-};
-
-export const stopSpinner = () => {
-  document.querySelector('body').style.visibility = 'visible';
-  document.getElementById('spinner').style.visibility = 'hidden';
-};

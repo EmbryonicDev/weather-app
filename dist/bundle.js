@@ -9050,9 +9050,7 @@ var loadPage = {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "countryName": () => (/* binding */ countryName),
-/* harmony export */   "setErrorMsg": () => (/* binding */ setErrorMsg),
-/* harmony export */   "startSpinner": () => (/* binding */ startSpinner),
-/* harmony export */   "stopSpinner": () => (/* binding */ stopSpinner)
+/* harmony export */   "setErrorMsg": () => (/* binding */ setErrorMsg)
 /* harmony export */ });
 // Convert country code to full country name
 var countryName = new Intl.DisplayNames(['en'], {
@@ -9068,14 +9066,6 @@ var setErrorMsg = function setErrorMsg(onOrOff) {
     errorMsg.style.cssText = 'background: transparent; height: 24.5px';
     errorMsg.innerText = '';
   }
-};
-var startSpinner = function startSpinner() {
-  document.querySelector('body').style.visibility = 'hidden';
-  document.getElementById('spinner').style.visibility = 'visible';
-};
-var stopSpinner = function stopSpinner() {
-  document.querySelector('body').style.visibility = 'visible';
-  document.getElementById('spinner').style.visibility = 'hidden';
 };
 
 /***/ }),
@@ -9099,7 +9089,18 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
 
- // eslint-disable-next-line consistent-return
+
+
+var startSpinner = function startSpinner() {
+  document.querySelector('body').style.visibility = 'hidden';
+  document.getElementById('spinner').style.visibility = 'visible';
+};
+
+var stopSpinner = function stopSpinner() {
+  document.querySelector('body').style.visibility = 'visible';
+  document.getElementById('spinner').style.visibility = 'hidden';
+}; // eslint-disable-next-line consistent-return
+
 
 var getData = /*#__PURE__*/function () {
   var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
@@ -9126,7 +9127,7 @@ var getData = /*#__PURE__*/function () {
             apiKey = '8d8571b1c93bd4e2325c718b62e874dc';
             url = "https://api.openweathermap.org/data/2.5/weather?q=".concat(location, "&appid=").concat(apiKey, "&units=").concat(unit);
             _context.prev = 4;
-            (0,_functions__WEBPACK_IMPORTED_MODULE_1__.startSpinner)();
+            startSpinner();
             _context.next = 8;
             return fetch(url, {
               mode: 'cors'
@@ -9178,7 +9179,7 @@ var getData = /*#__PURE__*/function () {
 
           case 33:
             _context.prev = 33;
-            (0,_functions__WEBPACK_IMPORTED_MODULE_1__.stopSpinner)();
+            stopSpinner();
             return _context.finish(33);
 
           case 36:

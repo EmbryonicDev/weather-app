@@ -8916,13 +8916,13 @@ var loadPage = {
     },
     sharedDomEl: function sharedDomEl() {
       loadPage.weatherNow.temp = document.querySelector('#dayMain span');
-      loadPage.weatherNow.sky = document.querySelector('#daySky');
       loadPage.weatherNow.weatherIcon = document.querySelector('#dayMain > p > img');
       loadPage.weatherNow.feelsLike = document.querySelector('#feelsLike span');
     },
     getSky: function getSky() {
+      var skyEl = document.querySelector('#daySky');
       var sky = (0,_functions__WEBPACK_IMPORTED_MODULE_0__.titleCase)(loadPage.data.forecast.current.weather[0].description);
-      loadPage.weatherNow.sky.innerText = sky;
+      skyEl.innerText = sky;
     }
   },
   dayDetails: {

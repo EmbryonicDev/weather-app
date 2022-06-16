@@ -125,13 +125,13 @@ export const loadPage = {
     },
     sharedDomEl() {
       loadPage.weatherNow.temp = document.querySelector('#dayMain span');
-      loadPage.weatherNow.sky = document.querySelector('#daySky');
       loadPage.weatherNow.weatherIcon = document.querySelector('#dayMain > p > img');
       loadPage.weatherNow.feelsLike = document.querySelector('#feelsLike span');
     },
     getSky() {
+      const skyEl = document.querySelector('#daySky');
       const sky = titleCase(loadPage.data.forecast.current.weather[0].description);
-      loadPage.weatherNow.sky.innerText = sky;
+      skyEl.innerText = sky;
     },
   },
 

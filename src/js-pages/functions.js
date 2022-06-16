@@ -1,14 +1,6 @@
 // Convert country code to full country name
 export const countryName = new Intl.DisplayNames(['en'], { type: 'region' });
 
-export const titleCase = (str) => {
-  const returnValue = str.toLowerCase().split(' ');
-  for (let i = 0; i < returnValue.length; i += 1) {
-    returnValue[i] = returnValue[i].charAt(0).toUpperCase() + returnValue[i].slice(1);
-  }
-  return returnValue.join(' ');
-};
-
 export const setErrorMsg = (onOrOff) => {
   const errorMsg = document.getElementById('error');
 

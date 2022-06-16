@@ -8833,6 +8833,15 @@ var loadPage = {
 
     return init;
   }(),
+  titleCase: function titleCase(str) {
+    var returnValue = str.toLowerCase().split(' ');
+
+    for (var i = 0; i < returnValue.length; i += 1) {
+      returnValue[i] = returnValue[i].charAt(0).toUpperCase() + returnValue[i].slice(1);
+    }
+
+    return returnValue.join(' ');
+  },
   getDistance: function getDistance(distanceInMeters, unit) {
     var returnValue;
     if (unit === 'metric') returnValue = "".concat(Math.round(distanceInMeters / 1000), " km");
@@ -8949,7 +8958,7 @@ var loadPage = {
     },
     getSky: function getSky() {
       var skyEl = document.querySelector('#daySky');
-      var sky = (0,_functions__WEBPACK_IMPORTED_MODULE_0__.titleCase)(loadPage.data.forecast.current.weather[0].description);
+      var sky = loadPage.titleCase(loadPage.data.forecast.current.weather[0].description);
       skyEl.innerText = sky;
     }
   },
@@ -9043,22 +9052,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "countryName": () => (/* binding */ countryName),
 /* harmony export */   "setErrorMsg": () => (/* binding */ setErrorMsg),
 /* harmony export */   "startSpinner": () => (/* binding */ startSpinner),
-/* harmony export */   "stopSpinner": () => (/* binding */ stopSpinner),
-/* harmony export */   "titleCase": () => (/* binding */ titleCase)
+/* harmony export */   "stopSpinner": () => (/* binding */ stopSpinner)
 /* harmony export */ });
 // Convert country code to full country name
 var countryName = new Intl.DisplayNames(['en'], {
   type: 'region'
 });
-var titleCase = function titleCase(str) {
-  var returnValue = str.toLowerCase().split(' ');
-
-  for (var i = 0; i < returnValue.length; i += 1) {
-    returnValue[i] = returnValue[i].charAt(0).toUpperCase() + returnValue[i].slice(1);
-  }
-
-  return returnValue.join(' ');
-};
 var setErrorMsg = function setErrorMsg(onOrOff) {
   var errorMsg = document.getElementById('error');
 

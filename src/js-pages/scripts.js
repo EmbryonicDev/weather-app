@@ -1,6 +1,6 @@
 import { format, fromUnixTime } from 'date-fns';
 import {
-  countryName, titleCase,
+  countryName,
 } from './functions';
 import { getData } from './main-async';
 import icon01d from '../assets/icons/01d.svg';
@@ -32,6 +32,14 @@ export const loadPage = {
     loadPage.weatherNow.init();
     loadPage.dayDetails.init();
     loadPage.weekly.init();
+  },
+
+  titleCase(str) {
+    const returnValue = str.toLowerCase().split(' ');
+    for (let i = 0; i < returnValue.length; i += 1) {
+      returnValue[i] = returnValue[i].charAt(0).toUpperCase() + returnValue[i].slice(1);
+    }
+    return returnValue.join(' ');
   },
 
   getDistance(distanceInMeters, unit) {
@@ -165,7 +173,7 @@ export const loadPage = {
     },
     getSky() {
       const skyEl = document.querySelector('#daySky');
-      const sky = titleCase(loadPage.data.forecast.current.weather[0].description);
+      const sky = loadPage.titleCase(loadPage.data.forecast.current.weather[0].description);
       skyEl.innerText = sky;
     },
   },

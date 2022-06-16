@@ -8889,7 +8889,6 @@ var loadPage = {
     },
     sharedDomEl: function sharedDomEl() {
       loadPage.placeDate.cityName = document.querySelector('#cityDate h2');
-      loadPage.placeDate.date = document.querySelector('#cityDate h4');
     },
     getCity: function getCity() {
       loadPage.placeDate.cityName.innerText = loadPage.data.city;
@@ -8898,10 +8897,11 @@ var loadPage = {
       loadPage.placeDate.cityName.innerText += ", ".concat(_functions__WEBPACK_IMPORTED_MODULE_0__.countryName.of(loadPage.data.countryCode));
     },
     getDate: function getDate() {
+      var cityHeading = document.querySelector('#cityDate h4');
       var date = new Date();
       date = (0,_functions__WEBPACK_IMPORTED_MODULE_0__.changeTimeZone)(date, loadPage.data.forecast.timezone);
       var formattedDate = (0,date_fns__WEBPACK_IMPORTED_MODULE_21__["default"])(date, 'eeee, d MMMM yyyy | H:mm');
-      loadPage.placeDate.date.innerText = formattedDate;
+      cityHeading.innerText = formattedDate;
     }
   },
   weatherNow: {

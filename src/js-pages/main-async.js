@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/no-cycle
 import { storedCity } from './dom';
 
 // Start of helper functions

@@ -183,17 +183,17 @@ export const loadPage = {
     },
     getSunrise() {
       const sunrise = document.querySelector('#sunrise .dayData');
-      let date = fromUnixTime(loadPage.data.forecast.current.sunrise);
-      date = changeTimeZone(date, loadPage.data.forecast.timezone);
-      const extractedTime = format(date, 'H:mm');
-      sunrise.innerText = extractedTime;
+      sunrise.innerText = loadPage.getTime(
+        loadPage.data.forecast.current.sunrise,
+        loadPage.data.forecast.timezone,
+      );
     },
     getSunset() {
       const sunset = document.querySelector('#sunset .dayData');
-      let date = fromUnixTime(loadPage.data.forecast.current.sunset);
-      date = changeTimeZone(date, loadPage.data.forecast.timezone);
-      const extractedTime = format(date, 'H:mm');
-      sunset.innerText = extractedTime;
+      sunset.innerText = loadPage.getTime(
+        loadPage.data.forecast.current.sunset,
+        loadPage.data.forecast.timezone,
+      );
     },
     getPressure() {
       const pressure = document.querySelector('#pressure .dayData');

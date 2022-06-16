@@ -8747,8 +8747,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__),
 /* harmony export */   "loadPage": () => (/* binding */ loadPage)
 /* harmony export */ });
-/* harmony import */ var date_fns__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(331);
-/* harmony import */ var date_fns__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(364);
+/* harmony import */ var date_fns__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(364);
+/* harmony import */ var date_fns__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(331);
 /* harmony import */ var _functions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(310);
 /* harmony import */ var _main_async__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(311);
 /* harmony import */ var _assets_icons_01d_svg__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(312);
@@ -8857,6 +8857,11 @@ var loadPage = {
       dummyElement.innerText = "".concat(Math.round(windSpeed), " mph");
     }
   },
+  getTime: function getTime(time, timeZone) {
+    var date = (0,date_fns__WEBPACK_IMPORTED_MODULE_21__["default"])(time);
+    date = (0,_functions__WEBPACK_IMPORTED_MODULE_0__.changeTimeZone)(date, timeZone);
+    return (0,date_fns__WEBPACK_IMPORTED_MODULE_22__["default"])(date, 'H:mm');
+  },
   getIcon: function getIcon(iconCode, element) {
     var dummyElement = element;
     if (iconCode === '01d') dummyElement.src = _assets_icons_01d_svg__WEBPACK_IMPORTED_MODULE_2__;
@@ -8900,7 +8905,7 @@ var loadPage = {
       var cityHeading = document.querySelector('#cityDate h4');
       var date = new Date();
       date = (0,_functions__WEBPACK_IMPORTED_MODULE_0__.changeTimeZone)(date, loadPage.data.forecast.timezone);
-      var formattedDate = (0,date_fns__WEBPACK_IMPORTED_MODULE_21__["default"])(date, 'eeee, d MMMM yyyy | H:mm');
+      var formattedDate = (0,date_fns__WEBPACK_IMPORTED_MODULE_22__["default"])(date, 'eeee, d MMMM yyyy | H:mm');
       cityHeading.innerText = formattedDate;
     }
   },
@@ -8965,16 +8970,16 @@ var loadPage = {
     },
     getSunrise: function getSunrise() {
       var sunrise = document.querySelector('#sunrise .dayData');
-      var date = (0,date_fns__WEBPACK_IMPORTED_MODULE_22__["default"])(loadPage.data.forecast.current.sunrise);
+      var date = (0,date_fns__WEBPACK_IMPORTED_MODULE_21__["default"])(loadPage.data.forecast.current.sunrise);
       date = (0,_functions__WEBPACK_IMPORTED_MODULE_0__.changeTimeZone)(date, loadPage.data.forecast.timezone);
-      var extractedTime = (0,date_fns__WEBPACK_IMPORTED_MODULE_21__["default"])(date, 'H:mm');
+      var extractedTime = (0,date_fns__WEBPACK_IMPORTED_MODULE_22__["default"])(date, 'H:mm');
       sunrise.innerText = extractedTime;
     },
     getSunset: function getSunset() {
       var sunset = document.querySelector('#sunset .dayData');
-      var date = (0,date_fns__WEBPACK_IMPORTED_MODULE_22__["default"])(loadPage.data.forecast.current.sunset);
+      var date = (0,date_fns__WEBPACK_IMPORTED_MODULE_21__["default"])(loadPage.data.forecast.current.sunset);
       date = (0,_functions__WEBPACK_IMPORTED_MODULE_0__.changeTimeZone)(date, loadPage.data.forecast.timezone);
-      var extractedTime = (0,date_fns__WEBPACK_IMPORTED_MODULE_21__["default"])(date, 'H:mm');
+      var extractedTime = (0,date_fns__WEBPACK_IMPORTED_MODULE_22__["default"])(date, 'H:mm');
       sunset.innerText = extractedTime;
     },
     getPressure: function getPressure() {
@@ -8995,9 +9000,9 @@ var loadPage = {
 
       for (var i = 1; i < 8; i += 1) {
         // get weekday from date
-        var date = (0,date_fns__WEBPACK_IMPORTED_MODULE_22__["default"])(loadPage.data.forecast.daily[i].dt);
+        var date = (0,date_fns__WEBPACK_IMPORTED_MODULE_21__["default"])(loadPage.data.forecast.daily[i].dt);
         date = (0,_functions__WEBPACK_IMPORTED_MODULE_0__.changeTimeZone)(date, loadPage.data.forecast.timezone);
-        var dayName = (0,date_fns__WEBPACK_IMPORTED_MODULE_21__["default"])(date, 'eeee');
+        var dayName = (0,date_fns__WEBPACK_IMPORTED_MODULE_22__["default"])(date, 'eeee');
         weekDay[i - 1].innerText = dayName;
         loadPage.getIcon(loadPage.data.forecast.daily[i].weather[0].icon, icon[i - 1]);
         loadPage.getTemp(loadPage.data.forecast.daily[i].temp.max, maxTemp[i - 1]);

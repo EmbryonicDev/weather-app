@@ -60,6 +60,12 @@ export const loadPage = {
     }
   },
 
+  getTime(time, timeZone) {
+    let date = fromUnixTime(time);
+    date = changeTimeZone(date, timeZone);
+    return format(date, 'H:mm');
+  },
+
   getIcon(iconCode, element) {
     const dummyElement = element;
     if (iconCode === '01d') dummyElement.src = icon01d;

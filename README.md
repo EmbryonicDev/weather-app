@@ -6,6 +6,7 @@
  
 ### Features
 ### * Search the app for over 200 000 cities across the globe using the Open Weather API. 
+### * Colorful loading spinner while the data is being fetched
 ### * Toggle °C / °F
 ### * The app uses local storage to store the last city you searched as well as the chosen unit of measurement
 ### * The app displays the current: 

@@ -22,6 +22,7 @@ import icon50n from '../assets/icons/50n.svg';
 import icon1232n from '../assets/icons/1232n.svg';
 import mainIcon from '../assets/icons/weather-icon.svg';
 import magIcon from '../assets/icons/search-icon.svg';
+import favicon from '../assets/icons/favicon.png';
 
 export const setStaticIcons = () => {
   const searchIcon = document.getElementById('searchIcon');
@@ -29,6 +30,14 @@ export const setStaticIcons = () => {
 
   searchIcon.src = magIcon;
   headerIcon.src = mainIcon;
+};
+
+export const setFavicon = () => {
+  const headTitle = document.querySelector('head');
+  const faviconIcon = document.createElement('link');
+  faviconIcon.setAttribute('rel', 'shortcut icon');
+  faviconIcon.setAttribute('href', favicon);
+  headTitle.appendChild(faviconIcon);
 };
 
 // Convert country code to full country name

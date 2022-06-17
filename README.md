@@ -4,7 +4,7 @@
 
 ## Live: https://embryonicdev.github.io/weather-app/
  
-### Features
+## Features
 ### * Search the app for over 200 000 cities across the globe using the Open Weather API. 
 ### * Colorful loading spinner while the data is being fetched
 ### * Toggle °C / °F
